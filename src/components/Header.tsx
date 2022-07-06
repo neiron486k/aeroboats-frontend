@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Header: FC = () => {
@@ -24,6 +24,7 @@ const Header: FC = () => {
                 <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                     AeroGlister
                 </Typography>
+                <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
     );
