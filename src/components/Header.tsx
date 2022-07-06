@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
+import {AppBar} from "@mui/material";
 
 const Header: FC = () => {
     return (
-        <div>
+        <AppBar>
             Header
-        </div>
+        </AppBar>
     );
 };
 
