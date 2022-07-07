@@ -27,7 +27,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                 </Container>
             </Box>
             <Navigation
-                count={slides.length}
+                pages={slides.length}
                 changePosition={setPosition}
                 currentPosition={position}
             />

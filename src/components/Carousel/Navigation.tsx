@@ -3,15 +3,15 @@ import {Box} from "@mui/material";
 import Point from "./Point";
 
 interface NavigationProps {
-    count: number,
+    pages: number,
     changePosition: (position: number) => void
     currentPosition: number
 }
 
-const Navigation: FC<NavigationProps> = ({count, changePosition, currentPosition}) => {
+const Navigation: FC<NavigationProps> = ({pages, changePosition, currentPosition}) => {
     const items: Array<number> = [];
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < pages; i++) {
         items.push(i);
     }
 
