@@ -19,6 +19,12 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
         }
     }
 
+    const flip = (event: React.TouchEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        const firstTouch = event.touches[0];
+        console.log(firstTouch);
+    }
+
     return (
         <Box
             sx={{
@@ -29,7 +35,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                 backgroundPosition: 'center'
             }}
             tabIndex={0}
-            onKeyUp={handleKey}
+            onTouchEnd={flip}
         >
             <Box sx={{
                 display: 'flex',
