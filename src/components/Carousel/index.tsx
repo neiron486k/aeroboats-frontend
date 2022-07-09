@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {Box} from "@mui/material";
 import Slide from "../../models/Slide";
 import Point from "./Point";
@@ -9,21 +9,25 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({slides}) => {
     const [position, setPosition] = useState(0);
+    const [play, setPlay] = useState<Boolean>(true);
     const slide = slides[position];
+    const timeout: number = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 5000);
 
-    const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === 'ArrowLeft' && position !== 0) {
-            setPosition(position - 1);
-        } else if (e.key === 'ArrowRight' && position < slides.length - 1) {
-            setPosition(position + 1);
+    const flip = useCallback(() => {
+        const len = slides.length - 1;
+
+        if (position < len) {
+            setPosition(position + 1)
+        } else if (position === len) {
+            setPosition(0)
         }
-    }
+    }, [position, slides.length])
 
-    const flip = (event: React.TouchEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        const firstTouch = event.touches[0];
-        console.log(firstTouch);
-    }
+    useEffect(() => {
+        if (play) {
+            setTimeout(flip, timeout);
+        }
+    }, [position, play])
 
     return (
         <Box
@@ -34,8 +38,8 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
-            tabIndex={0}
-            onTouchEnd={flip}
+            onMouseEnter={() => setPlay(false)}
+            onMouseLeave={() => setPlay(true)}
         >
             <Box sx={{
                 display: 'flex',
@@ -43,7 +47,8 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                 alignItems: 'center',
                 position: 'absolute',
                 bottom: 0,
-                width: '100%'
+                width: '100%',
+                padding: '5px'
             }}
             >
                 {slides.map((item, index) => (

@@ -46,14 +46,12 @@ const Catalog = () => {
                 paddingTop: '15px'
             }}
             display="flex"
-            // justifyContent="center"
-            // alignItems="center"
             height="100vh"
         >
             <Container>
                 <Grid container spacing={2}>
-                    {items.map(item => (
-                        <Grid item xs={12} lg={4}>
+                    {items.map((item, index) => (
+                        <Grid item xs={12} lg={4} key={index}>
                             <Card>
                                 <CardMedia
                                     component="img"
