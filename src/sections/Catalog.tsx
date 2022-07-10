@@ -1,18 +1,8 @@
 import React from 'react';
-import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Container,
-    Grid,
-    Pagination,
-    Typography
-} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
+import {Link} from "react-router-dom";
 
 interface ItemProps {
     image: string,
@@ -69,17 +59,14 @@ const Catalog = () => {
                                     </Typography>
                                 </CardContent>}
                                 <CardActions>
-                                    <Button size="small">Share</Button>
-                                    <Button size="small">Learn More</Button>
+                                    <Link to={"/products/" + index}>
+                                        <Button>Learn More</Button>
+                                    </Link>
                                 </CardActions>
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
-                <Pagination
-                    count={10}
-                    shape="rounded"
-                />
             </Container>
         </Box>
     );
