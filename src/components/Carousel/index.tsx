@@ -1,6 +1,6 @@
-import React, {FC, useCallback, useEffect, useState} from 'react';
-import {Box} from "@mui/material";
+import React, {FC, useEffect, useState} from 'react';
 import Slide from "../../models/Slide";
+import {Box} from "@mui/material";
 import Point from "./Point";
 
 interface CarouselProps {
@@ -8,56 +8,74 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({slides}) => {
-    const [position, setPosition] = useState(0);
-    const [play, setPlay] = useState<Boolean>(true);
-    const slide = slides[position];
-    const timeout: number = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 5000);
-
-    const flip = useCallback(() => {
-        const len = slides.length - 1;
-
-        if (position < len) {
-            setPosition(position + 1)
-        } else if (position === len) {
-            setPosition(0)
-        }
-    }, [position, slides.length])
+    const [current, setCurrent] = useState<number>(0);
+    const [play, setPlay] = useState<boolean>(true);
 
     useEffect(() => {
-        if (play) {
-            setTimeout(flip, timeout);
+        const autoPlay = () => {
+            const pages = slides.length - 1;
+
+            if (current < pages) {
+                setCurrent(current + 1);
+            } else if (current === pages) {
+                setCurrent(0);
+            }
         }
-    }, [position, play])
+
+        if (play) {
+            const timeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
+            setTimeout(autoPlay, timeout);
+        }
+    }, [current, play, slides.length]);
 
     return (
         <Box
-            sx={{
-                height: '100%',
-                background: `url(${slide.image})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-            }}
+            sx={{height: '100%'}}
+            display="flex"
             onMouseEnter={() => setPlay(false)}
             onMouseLeave={() => setPlay(true)}
         >
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'absolute',
-                bottom: 0,
-                width: '100%',
-                padding: '5px'
-            }}
-            >
-                {slides.map((item, index) => (
-                    <Point
+            {slides.map((slide, index) => {
+                const opacity = current === index ? 1 : 0;
+
+                return (
+                    <Box
                         key={index}
-                        onClick={() => setPosition(index)}
-                        active={position === index}
-                    />
-                ))}
+                        sx={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            transition: '0.5s ease',
+                            opacity: opacity
+                        }}
+                    >
+                        {current === index && <Box
+                            sx={{
+                                height: '100%',
+                                background: `url(${slide.image})`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }}
+                        />}
+                    </Box>
+                )
+            })}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    display: 'flex',
+                    width: '100%',
+                    padding: '5px'
+                }}
+                justifyContent="center"
+            >
+                {slides.map((slide, index) => {
+                    return (
+                        <Point key={index} active={current === index} onClick={() => setCurrent(index)}/>
+                    )
+                })}
             </Box>
         </Box>
     );
