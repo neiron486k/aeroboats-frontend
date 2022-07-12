@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import Slide from "../../models/Slide";
-import {Box} from "@mui/material";
+import {Box, Container, Slide as SlideAnimation, Typography} from "@mui/material";
 import Point from "./Point";
 
 interface CarouselProps {
@@ -37,6 +37,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
         >
             {slides.map((slide, index) => {
                 const opacity = current === index ? 1 : 0;
+                const timeout = 1000;
 
                 return (
                     <Box
@@ -57,7 +58,28 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                             }}
-                        />}
+                            justifyContent="center"
+                            display="flex"
+                            alignItems="center"
+                        >
+                            <Container sx={{position: 'relative', overflow: 'hidden'}}>
+                                <Box>
+                                    <SlideAnimation direction="right" in={current === index} timeout={timeout}>
+                                        <Typography color="white" variant="h5">loren ipsus some text about boats</Typography>
+                                    </SlideAnimation>
+                                </Box>
+                                <Box justifyContent="center" display="flex">
+                                    <SlideAnimation direction="up" in={current === index} timeout={timeout}>
+                                        <Typography color="white" variant="h2">We are the best!</Typography>
+                                    </SlideAnimation>
+                                </Box>
+                                <Box sx={{textAlign: 'right'}}>
+                                    <SlideAnimation direction="left" in={current === index} timeout={timeout}>
+                                        <Typography color="white" variant="h5">loren ipsus some text about boats</Typography>
+                                    </SlideAnimation>
+                                </Box>
+                            </Container>
+                        </Box>}
                     </Box>
                 )
             })}
