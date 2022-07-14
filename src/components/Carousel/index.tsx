@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import Slide from "../../models/Slide";
+import Slide from "./models/Slide";
 import {Box, Container, Slide as SlideAnimation, Typography} from "@mui/material";
 import Point from "./Point";
 
@@ -65,17 +65,17 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                             <Container sx={{position: 'relative', overflow: 'hidden'}}>
                                 <Box>
                                     <SlideAnimation direction="right" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h5">loren ipsus some text about boats</Typography>
+                                        <Typography color="white" variant="h5">{slide.leftContent}</Typography>
                                     </SlideAnimation>
                                 </Box>
                                 <Box justifyContent="center" display="flex">
                                     <SlideAnimation direction="up" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h2">We are the best!</Typography>
+                                        <Typography color="white" variant="h2">{slide.centerContent}</Typography>
                                     </SlideAnimation>
                                 </Box>
                                 <Box sx={{textAlign: 'right'}}>
                                     <SlideAnimation direction="left" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h5">loren ipsus some text about boats</Typography>
+                                        <Typography color="white" variant="h5">{slide.rightContent}</Typography>
                                     </SlideAnimation>
                                 </Box>
                             </Container>
