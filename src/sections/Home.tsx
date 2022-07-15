@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import Carousel from "../components/Carousel";
 import Slide from "../components/Carousel/models/Slide";
 
@@ -15,6 +15,14 @@ const slides: Slide[] = [
         leftContent: 'Have a nice fishing',
         centerContent: 'Buy asap awesome a boat!',
         rightContent: 'Have a good evening'
+    },
+    {
+        image: 'https://1687772.ssl.1c-bitrix-cdn.ru/upload/iblock/b25/b2583ef8a81270d9d54520532221e0e7.jpg?162497169160190',
+        leftContent: 'Have a nice fishing',
+        centerContent: 'Buy asap awesome a boat!',
+        rightContent: <Box>
+            <Button variant="contained" color="success" sx={{width: '10%'}}>test</Button>
+        </Box>
     }
 ]
 

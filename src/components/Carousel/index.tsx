@@ -32,6 +32,8 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
         <Box
             sx={{height: '100%'}}
             display="flex"
+            justifyContent="center"
+            alignItems="center"
             onMouseEnter={() => setPlay(false)}
             onMouseLeave={() => setPlay(true)}
         >
@@ -57,29 +59,35 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                                 backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
+                                filter: `brightness(0.7)`
                             }}
                             justifyContent="center"
                             display="flex"
                             alignItems="center"
-                        >
-                            <Container sx={{position: 'relative', overflow: 'hidden'}}>
-                                <Box>
-                                    <SlideAnimation direction="right" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h5">{slide.leftContent}</Typography>
-                                    </SlideAnimation>
-                                </Box>
-                                <Box justifyContent="center" display="flex">
-                                    <SlideAnimation direction="up" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h2">{slide.centerContent}</Typography>
-                                    </SlideAnimation>
-                                </Box>
-                                <Box sx={{textAlign: 'right'}}>
-                                    <SlideAnimation direction="left" in={current === index} timeout={timeout}>
-                                        <Typography color="white" variant="h5">{slide.rightContent}</Typography>
-                                    </SlideAnimation>
-                                </Box>
-                            </Container>
-                        </Box>}
+                        />}
+                        <Container sx={{
+                            position: 'absolute',
+                            overflow: 'hidden',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)'
+                        }}>
+                            <Box>
+                                <SlideAnimation direction="right" in={current === index} timeout={timeout}>
+                                    <Typography color="white" variant="h5">{slide.leftContent}</Typography>
+                                </SlideAnimation>
+                            </Box>
+                            <Box justifyContent="center" display="flex">
+                                <SlideAnimation direction="up" in={current === index} timeout={timeout}>
+                                    <Typography color="white" variant="h2">{slide.centerContent}</Typography>
+                                </SlideAnimation>
+                            </Box>
+                            <Box sx={{textAlign: 'right'}}>
+                                <SlideAnimation direction="left" in={current === index} timeout={timeout}>
+                                    <Typography color="white" variant="h5">{slide.rightContent}</Typography>
+                                </SlideAnimation>
+                            </Box>
+                        </Container>
                     </Box>
                 )
             })}
