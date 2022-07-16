@@ -13,7 +13,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
     const [play, setPlay] = useState<boolean>(true)
 
     useEffect(() => {
-        const timeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
+        const playTimeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
 
         const doPlay = () => {
             const pages = slides.length - 1;
@@ -26,7 +26,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
         }
 
         if (play && autoPlay === 'yes') {
-            const playInterval = setInterval(doPlay, timeout);
+            const playInterval = setInterval(doPlay, playTimeout);
 
             return () => clearInterval(playInterval);
         }
