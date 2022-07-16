@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {Box, Button} from "@mui/material";
 import Carousel from "../components/Carousel";
-import Slide from "../components/Carousel/models/Slide";
+import Item from "../components/Carousel/models/Item";
 
-const slides: Slide[] = [
+const slides: Item[] = [
     {
         image: 'https://st18.stpulscen.ru/images/product/325/898/871_big.jpg',
         leftContent: 'Have a nice boats with us',

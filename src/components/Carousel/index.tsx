@@ -1,44 +1,50 @@
 import React, {FC, useEffect, useState} from 'react';
-import Slide from "./models/Slide";
+import Item from "./models/Item";
 import {Box, Container, Slide as SlideAnimation, Typography} from "@mui/material";
 import Point from "./Point";
 
 interface CarouselProps {
-    slides: Slide[]
+    slides: Item[]
 }
 
 const Carousel: FC<CarouselProps> = ({slides}) => {
-    const [current, setCurrent] = useState<number>(0);
-    const [play, setPlay] = useState<boolean>(true);
+    const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
+    const autoPlay: string = process.env.REACT_APP_CAROUSEL_AUTOPLAY;
+    const [play, setPlay] = useState<boolean>(true)
 
     useEffect(() => {
-        const autoPlay = () => {
+        const timeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
+
+        const doPlay = () => {
             const pages = slides.length - 1;
 
-            if (current < pages) {
-                setCurrent(current + 1);
-            } else if (current === pages) {
-                setCurrent(0);
+            if (currentItemIndex < pages) {
+                setCurrentItemIndex(currentItemIndex + 1);
+            } else if (currentItemIndex === pages) {
+                setCurrentItemIndex(0);
             }
         }
 
-        if (play) {
-            const timeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
-            setTimeout(autoPlay, timeout);
+        if (play && autoPlay === 'yes') {
+            const playInterval = setInterval(doPlay, timeout);
+
+            return () => clearInterval(playInterval);
         }
-    }, [current, play, slides.length]);
+
+    }, [currentItemIndex, slides.length, play, autoPlay]);
 
     return (
         <Box
+            component="div"
             sx={{height: '100%'}}
             display="flex"
             justifyContent="center"
             alignItems="center"
-            onMouseEnter={() => setPlay(false)}
+            onMouseOver={() => setPlay(false)}
             onMouseLeave={() => setPlay(true)}
         >
             {slides.map((slide, index) => {
-                const opacity = current === index ? 1 : 0;
+                const opacity = currentItemIndex === index ? 1 : 0;
                 const timeout = 1000;
 
                 return (
@@ -52,7 +58,7 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                             opacity: opacity
                         }}
                     >
-                        {current === index && <Box
+                        {currentItemIndex === index && <Box
                             sx={{
                                 height: '100%',
                                 background: `url(${slide.image})`,
@@ -73,17 +79,17 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                             transform: 'translate(-50%, -50%)'
                         }}>
                             <Box>
-                                <SlideAnimation direction="right" in={current === index} timeout={timeout}>
+                                <SlideAnimation direction="right" in={currentItemIndex === index} timeout={timeout}>
                                     <Typography color="white" variant="h5">{slide.leftContent}</Typography>
                                 </SlideAnimation>
                             </Box>
                             <Box justifyContent="center" display="flex">
-                                <SlideAnimation direction="up" in={current === index} timeout={timeout}>
+                                <SlideAnimation direction="up" in={currentItemIndex === index} timeout={timeout}>
                                     <Typography color="white" variant="h2">{slide.centerContent}</Typography>
                                 </SlideAnimation>
                             </Box>
                             <Box sx={{textAlign: 'right'}}>
-                                <SlideAnimation direction="left" in={current === index} timeout={timeout}>
+                                <SlideAnimation direction="left" in={currentItemIndex === index} timeout={timeout}>
                                     <Typography color="white" variant="h5">{slide.rightContent}</Typography>
                                 </SlideAnimation>
                             </Box>
@@ -101,9 +107,13 @@ const Carousel: FC<CarouselProps> = ({slides}) => {
                 }}
                 justifyContent="center"
             >
-                {slides.map((slide, index) => {
+                {Array.from({length: slides.length}).map((_, index) => {
                     return (
-                        <Point key={index} active={current === index} onClick={() => setCurrent(index)}/>
+                        <Point
+                            key={index}
+                            active={currentItemIndex === index}
+                            onClick={() => setCurrentItemIndex(index)}
+                        />
                     )
                 })}
             </Box>
