@@ -32,12 +32,10 @@ const slides: Item[] = [
   },
 ];
 
-const Home: FC = () => {
-  return (
-    <Box sx={{ height: "100vh" }}>
-      <Carousel slides={slides} />
-    </Box>
-  );
-};
+const Home: FC = () => (
+  <Box sx={{ height: "100vh" }}>
+    <Carousel slides={slides} />
+  </Box>
+);
 
 export default Home;
