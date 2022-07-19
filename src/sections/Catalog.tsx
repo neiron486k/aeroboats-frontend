@@ -1,18 +1,8 @@
 import React from 'react';
-import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Container,
-    Grid,
-    Pagination,
-    Typography
-} from "@mui/material";
+import {Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography} from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
+import Section from "../components/Section";
 
 interface ItemProps {
     image: string,
@@ -39,15 +29,7 @@ const Catalog = () => {
     const smBreakpoint = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
-        <Box
-            sx={{
-                background: '#3e2723',
-                overflow: 'hidden',
-                paddingTop: '15px'
-            }}
-            display="flex"
-            height="100vh"
-        >
+        <Section>
             <Container>
                 <Grid container spacing={2}>
                     {items.map((item, index) => (
@@ -76,12 +58,8 @@ const Catalog = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Pagination
-                    count={10}
-                    shape="rounded"
-                />
             </Container>
-        </Box>
+        </Section>
     );
 };
 
