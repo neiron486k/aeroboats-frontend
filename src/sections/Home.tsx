@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Box, Button } from '@mui/material';
 import Carousel from '../components/Carousel';
 import Item from '../components/Carousel/models/Item';
+import Section from '../components/Section';
 
 const items: Item[] = [
   {
@@ -36,9 +37,9 @@ const items: Item[] = [
 ];
 
 const Home: FC = () => (
-  <Box sx={{ height: '100vh' }}>
+  <Section>
     <Carousel items={items} />
-  </Box>
+  </Section>
 );
 
 export default Home;

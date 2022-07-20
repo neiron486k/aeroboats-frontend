@@ -6,7 +6,15 @@ interface SectionProps {
 }
 
 const Section: FC<SectionProps> = ({ children }) => {
-  return <Box sx={{ height: '100vh' }}>{children}</Box>;
+  return (
+    <Box
+      sx={{
+        height: '100vh',
+      }}
+    >
+      {children}
+    </Box>
+  );
 };
 
 export default Section;
