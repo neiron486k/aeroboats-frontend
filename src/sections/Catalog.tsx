@@ -15,20 +15,24 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 interface ItemProps {
+  id: number;
   image: string;
   content: string;
 }
 
 const items: ItemProps[] = [
   {
+    id: 1,
     image: "https://picsum.photos/200/300",
     content: "card 1",
   },
   {
+    id: 2,
     image: "https://picsum.photos/200/300",
     content: "card 2",
   },
   {
+    id: 3,
     image: "https://picsum.photos/200/300",
     content: "card 3",
   },
@@ -50,8 +54,8 @@ const Catalog = () => {
     >
       <Container>
         <Grid container spacing={2}>
-          {items.map((item, index) => (
-            <Grid item xs={12} lg={4} key={index}>
+          {items.map((item) => (
+            <Grid item xs={12} lg={4} key={item.id}>
               <Card>
                 <CardMedia
                   component="img"

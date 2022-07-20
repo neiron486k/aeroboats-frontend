@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 interface PointProps {
   active: boolean;
-  onClick: Function;
+  onClick: () => void;
 }
 
 const Point: FC<PointProps> = ({ active, onClick }) => {
@@ -19,7 +19,7 @@ const Point: FC<PointProps> = ({ active, onClick }) => {
         background: `${activeBackground}`,
       }}
       onClick={() => onClick()}
-    ></Box>
+    />
   );
 };
 
