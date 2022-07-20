@@ -1,12 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from 'react';
 import {
   Box,
   Container,
   Slide as SlideAnimation,
   Typography,
-} from "@mui/material";
-import Item from "./models/Item";
-import Point from "./Point";
+} from '@mui/material';
+import Item from './models/Item';
+import Point from './Point';
 
 interface CarouselProps {
   items: Item[];
@@ -33,7 +33,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
 
     const playInterval = setInterval(doPlay, playTimeout);
 
-    if (!play || autoPlay === "no") {
+    if (!play || autoPlay === 'no') {
       clearInterval(playInterval);
     }
 
@@ -43,7 +43,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
   return (
     <Box
       component="div"
-      sx={{ height: "100%" }}
+      sx={{ height: '100%' }}
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -58,21 +58,21 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
           <Box
             key={item.id}
             sx={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              transition: "0.5s ease",
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              transition: '0.5s ease',
               opacity,
             }}
           >
             {currentItem.id === item.id && (
               <Box
                 sx={{
-                  height: "100%",
+                  height: '100%',
                   background: `url(${item.image})`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                   filter: `brightness(0.7)`,
                 }}
                 justifyContent="center"
@@ -82,11 +82,11 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
             )}
             <Container
               sx={{
-                position: "absolute",
-                overflow: "hidden",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
+                position: 'absolute',
+                overflow: 'hidden',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
               }}
             >
               <Box>
@@ -111,7 +111,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
                   </Typography>
                 </SlideAnimation>
               </Box>
-              <Box sx={{ textAlign: "right" }}>
+              <Box sx={{ textAlign: 'right' }}>
                 <SlideAnimation
                   direction="left"
                   in={currentItem.id === item.id}
@@ -128,11 +128,11 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
       })}
       <Box
         sx={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 0,
-          display: "flex",
-          width: "100%",
-          padding: "5px",
+          display: 'flex',
+          width: '100%',
+          padding: '5px',
         }}
         justifyContent="center"
       >

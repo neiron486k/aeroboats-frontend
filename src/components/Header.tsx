@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React, { FC } from 'react';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header: FC = () => {
   return (
@@ -8,7 +8,7 @@ const Header: FC = () => {
       elevation={0}
       position="fixed"
       sx={{
-        background: "rgba(0,0,0,0.4)",
+        background: 'rgba(0,0,0,0.4)',
       }}
     >
       <Toolbar>
