@@ -3,6 +3,7 @@ import { Box, Button } from '@mui/material';
 import Carousel from '../components/Carousel';
 import Item from '../components/Carousel/models/Item';
 import Section from '../components/Section';
+import SectionEnum from '../enums/SectionEnum';
 
 const items: Item[] = [
   {
@@ -37,7 +38,7 @@ const items: Item[] = [
 ];
 
 const Home: FC = () => (
-  <Section>
+  <Section id={SectionEnum.HOME}>
     <Carousel items={items} />
   </Section>
 );
