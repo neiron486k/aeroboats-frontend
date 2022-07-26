@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
-import { Link } from 'react-scroll';
+import React, { FC, useEffect } from 'react';
+import { Link, animateScroll as scroll } from 'react-scroll';
 import { Box, Button, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import SectionEnum from '../../enums/SectionEnum';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setSection } from '../../store/reducers/ActionCreators';
 
 interface MenuItem {
   to: SectionEnum;
@@ -34,6 +36,17 @@ const menuItems: MenuItem[] = [
 ];
 
 const Menu: FC = () => {
+  const { section } = useAppSelector((state) => state.section);
+  const dispatch = useAppDispatch();
+
+  const handleSection = (selectedSection: SectionEnum) => {
+    dispatch(setSection(selectedSection));
+  };
+
+  useEffect(() => {
+    console.log(section);
+  }, [section]);
+
   return (
     <Box
       sx={{
@@ -43,9 +56,20 @@ const Menu: FC = () => {
       }}
     >
       {menuItems.map((item) => (
-        <Button color="inherit">
-          <Link to={item.to} smooth duration={500} key={item.to}>
-            <Typography variant={item.variant}>{item.title}</Typography>
+        <Button color="inherit" key={item.to}>
+          <Link
+            to={item.to}
+            smooth
+            duration={500}
+            key={item.to}
+            onClick={() => handleSection(item.to)}
+          >
+            <Typography
+              variant={item.variant}
+              color={item.to === section ? 'red' : 'inherit'}
+            >
+              {item.title}
+            </Typography>
           </Link>
         </Button>
       ))}

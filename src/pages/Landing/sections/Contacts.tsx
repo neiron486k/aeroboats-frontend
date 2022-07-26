@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Section from '../components/Section';
-import SectionEnum from '../enums/SectionEnum';
+import Section from './Section';
+import SectionEnum from '../../../enums/SectionEnum';
 
 const Contacts: FC = () => {
   return (

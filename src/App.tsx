@@ -1,22 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { CssBaseline } from '@mui/material';
-import Header from './components/Header';
-import Catalog from './sections/Catalog';
-import Home from './sections/Home';
-import About from './sections/About';
-import Contacts from './sections/Contacts';
+import Landing from './pages/Landing';
 
 const App: FC = () => {
-  useEffect(() => {});
-
   return (
     <>
       <CssBaseline />
-      <Header />
-      <Home />
-      <Catalog />
-      <About />
-      <Contacts />
+      <Landing />
     </>
   );
 };

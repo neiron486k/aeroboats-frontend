@@ -1,6 +1,6 @@
 import React from 'react';
-import Section from '../components/Section';
-import SectionEnum from '../enums/SectionEnum';
+import Section from './Section';
+import SectionEnum from '../../../enums/SectionEnum';
 
 const Catalog = () => {
   return (

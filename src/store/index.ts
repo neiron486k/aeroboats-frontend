@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import SectionSlice from './reducers/SectionSlice';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  section: SectionSlice,
+});
 
 export const setupStore = () => {
   return configureStore({
