@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-scroll';
-import { Box, IconButton, Modal, Typography } from '@mui/material';
+import { Box, IconButton, Modal, Slide, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import MenuIcon from '@mui/icons-material/Menu';
 import SectionEnum from '../enums/SectionEnum';
@@ -9,30 +9,30 @@ import { setSection } from '../store/reducers/ActionCreators';
 
 interface MenuItem {
   to: SectionEnum;
-  variant?: Variant;
+  variant: Variant;
   title: string;
 }
 
 const menuItems: MenuItem[] = [
   {
     to: SectionEnum.HOME,
-    title: 'Домой',
-    variant: 'subtitle2',
+    title: 'Начало',
+    variant: 'h4',
   },
   {
     to: SectionEnum.CATALOG,
     title: 'Каталог',
-    variant: 'subtitle2',
+    variant: 'h4',
   },
   {
     to: SectionEnum.ABOUT,
     title: 'О нас',
-    variant: 'subtitle2',
+    variant: 'h4',
   },
   {
     to: SectionEnum.CONTACTS,
     title: 'Контакты',
-    variant: 'subtitle2',
+    variant: 'h4',
   },
 ];
 
@@ -55,20 +55,12 @@ const Menu: FC = () => {
       }}
     >
       {!open && (
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={() => setOpen(!open)}
-        >
+        <IconButton size="large" edge="start" color="inherit" aria-label="menu" onClick={() => setOpen(!open)}>
           <MenuIcon />
         </IconButton>
       )}
       <Modal
         open={open}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
         sx={{
           height: '100vh',
           background: 'black',
@@ -78,24 +70,34 @@ const Menu: FC = () => {
           justifyContent: 'center',
         }}
       >
-        <>
-          {menuItems.map((item) => (
-            <Link
-              to={item.to}
-              smooth
-              duration={500}
-              key={item.to}
-              onClick={() => handleSection(item.to)}
-            >
-              <Typography
-                variant={item.variant}
-                color={item.to === section ? 'red' : 'inherit'}
-              >
-                {item.title}
-              </Typography>
-            </Link>
-          ))}
-        </>
+        <div>
+          {menuItems.map((item, index) => {
+            const slideDirection = index % 2 === 0 ? 'left' : 'right';
+
+            return (
+              <Slide key={item.to} direction={slideDirection} in={open} timeout={500}>
+                <div>
+                  <Typography
+                    color={item.to === section ? 'red' : 'white'}
+                    variant={item.variant}
+                    sx={{
+                      textAlign: 'center',
+                      transition: 'color .5s ease',
+                      ':hover': {
+                        color: 'red',
+                        cursor: 'pointer',
+                      },
+                    }}
+                  >
+                    <Link to={item.to} smooth duration={500} onClick={() => handleSection(item.to)}>
+                      {item.title}
+                    </Link>
+                  </Typography>
+                </div>
+              </Slide>
+            );
+          })}
+        </div>
       </Modal>
     </Box>
   );

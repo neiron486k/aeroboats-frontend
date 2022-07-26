@@ -1,10 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import {
-  Box,
-  Container,
-  Slide as SlideAnimation,
-  Typography,
-} from '@mui/material';
+import { Box, Container, Slide as SlideAnimation, Typography } from '@mui/material';
 import Item from './models/Item';
 import Point from './Point';
 
@@ -90,33 +85,21 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
               }}
             >
               <Box>
-                <SlideAnimation
-                  direction="right"
-                  in={currentItem.id === item.id}
-                  timeout={timeout}
-                >
+                <SlideAnimation direction="right" in={currentItem.id === item.id} timeout={timeout}>
                   <Typography color="white" variant="h5">
                     {item.leftContent}
                   </Typography>
                 </SlideAnimation>
               </Box>
               <Box justifyContent="center" display="flex">
-                <SlideAnimation
-                  direction="up"
-                  in={currentItem.id === item.id}
-                  timeout={timeout}
-                >
+                <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
                   <Typography color="white" variant="h2">
                     {item.centerContent}
                   </Typography>
                 </SlideAnimation>
               </Box>
               <Box sx={{ textAlign: 'right' }}>
-                <SlideAnimation
-                  direction="left"
-                  in={currentItem.id === item.id}
-                  timeout={timeout}
-                >
+                <SlideAnimation direction="left" in={currentItem.id === item.id} timeout={timeout}>
                   <Typography color="white" variant="h5">
                     {item.rightContent}
                   </Typography>
@@ -137,13 +120,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
         justifyContent="center"
       >
         {items.map((item) => {
-          return (
-            <Point
-              key={item.id}
-              active={currentItem.id === item.id}
-              onClick={() => setCurrentItem(item)}
-            />
-          );
+          return <Point key={item.id} active={currentItem.id === item.id} onClick={() => setCurrentItem(item)} />;
         })}
       </Box>
     </Box>

@@ -6,15 +6,11 @@ export enum ScrollDirection {
 }
 
 export const useScrollDirection = (): ScrollDirection => {
-  const [direction, setDirection] = useState<ScrollDirection>(
-    ScrollDirection.up,
-  );
+  const [direction, setDirection] = useState<ScrollDirection>(ScrollDirection.up);
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
-      setDirection(
-        event.deltaY < 0 ? ScrollDirection.up : ScrollDirection.down,
-      );
+      setDirection(event.deltaY < 0 ? ScrollDirection.up : ScrollDirection.down);
     };
 
     document.addEventListener('wheel', handleWheel);

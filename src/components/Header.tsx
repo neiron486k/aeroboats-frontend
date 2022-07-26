@@ -4,11 +4,7 @@ import Menu from './Menu';
 
 const Header: FC = () => {
   return (
-    <AppBar
-      elevation={0}
-      position="fixed"
-      sx={{ background: `rgba(0, 0, 0, 0)` }}
-    >
+    <AppBar elevation={0} position="fixed" sx={{ background: `rgba(0, 0, 0, 0)` }}>
       <Toolbar>
         <Menu />
       </Toolbar>
