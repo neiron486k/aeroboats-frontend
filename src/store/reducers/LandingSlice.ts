@@ -10,7 +10,7 @@ const initialState: SectionState = {
   section: SectionEnum.HOME,
 };
 
-const sectionSlice = createSlice({
+const landingSlice = createSlice({
   name: 'section',
   initialState,
   reducers: {},
@@ -21,4 +21,4 @@ const sectionSlice = createSlice({
   },
 });
 
-export default sectionSlice.reducer;
+export default landingSlice.reducer;

@@ -7,9 +7,7 @@ const Header: FC = () => {
     <AppBar
       elevation={0}
       position="fixed"
-      sx={{
-        background: 'rgba(0,0,0,0.4)',
-      }}
+      sx={{ background: `rgba(0, 0, 0, 0)` }}
     >
       <Toolbar>
         <Menu />

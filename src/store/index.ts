@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import SectionSlice from './reducers/SectionSlice';
+import LandingSlice from './reducers/LandingSlice';
 
 const rootReducer = combineReducers({
-  section: SectionSlice,
+  landing: LandingSlice,
 });
 
 export const setupStore = () => {
