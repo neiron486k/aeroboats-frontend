@@ -1,19 +1,12 @@
 import React, { FC, useState } from 'react';
-import { Link } from 'react-scroll';
-import { Box, IconButton, Modal, Slide, Typography } from '@mui/material';
-import { Variant } from '@mui/material/styles/createTypography';
+import { Box, IconButton, Modal, Slide } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SectionEnum from '../enums/SectionEnum';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { setSection } from '../store/reducers/ActionCreators';
+import SectionEnum from '../../enums/SectionEnum';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setSection } from '../../store/reducers/ActionCreators';
+import MenuItem from './MenuItem';
 
-interface MenuItem {
-  to: SectionEnum;
-  variant: Variant;
-  title: string;
-}
-
-const menuItems: MenuItem[] = [
+const menuItems = [
   {
     to: SectionEnum.HOME,
     title: 'Начало',
@@ -70,34 +63,20 @@ const Menu: FC = () => {
           justifyContent: 'center',
         }}
       >
-        <div>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           {menuItems.map((item, index) => {
             const slideDirection = index % 2 === 0 ? 'left' : 'right';
+            const active = item.to === section;
 
             return (
               <Slide key={item.to} direction={slideDirection} in={open} timeout={500}>
                 <div>
-                  <Typography
-                    color={item.to === section ? 'red' : 'white'}
-                    variant={item.variant}
-                    sx={{
-                      textAlign: 'center',
-                      transition: 'color .5s ease',
-                      ':hover': {
-                        color: 'red',
-                        cursor: 'pointer',
-                      },
-                    }}
-                  >
-                    <Link to={item.to} smooth duration={500} onClick={() => handleSection(item.to)}>
-                      {item.title}
-                    </Link>
-                  </Typography>
+                  <MenuItem {...item} active={active} handleSection={handleSection} />
                 </div>
               </Slide>
             );
           })}
-        </div>
+        </Box>
       </Modal>
     </Box>
   );
