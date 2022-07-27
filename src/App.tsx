@@ -11,7 +11,6 @@ const App: FC = () => (
             <Route path="/" element={<Landing/>} />
             <Route path="/products/:id" element={<Product/>} />
         </Routes>
-
     </div>
 )
 

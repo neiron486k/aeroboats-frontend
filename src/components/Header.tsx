@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import CardMedia from '@mui/material/CardMedia';
+import propeller from "./propeller.gif"
 
 const Header: FC = () => {
     return (
@@ -21,7 +23,16 @@ const Header: FC = () => {
                 >
                     <MenuIcon/>
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                <CardMedia
+                    component="img"
+                    image={propeller}
+                    height="40"
+                    sx={{
+                        width: "40px",
+                        borderRadius: "50%"
+                    }}
+                />
+                <Typography variant="h6" component="div" sx={{flexGrow: 1, marginLeft: "10px"}}>
                     AeroGlister
                 </Typography>
                 <Button color="inherit">Login</Button>
