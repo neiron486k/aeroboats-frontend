@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Link } from 'react-scroll';
 import SectionEnum from '../../enums/SectionEnum';
 
 export interface MenuItemProps {
@@ -12,7 +11,7 @@ export interface MenuItemProps {
 
 const MenuItem: FC<MenuItemProps> = ({ to, title, active, handleSection }) => {
   return (
-    <Box>
+    <Box onClick={() => handleSection(to)}>
       <Typography
         color={active ? 'red' : 'white'}
         variant="h4"
@@ -25,9 +24,7 @@ const MenuItem: FC<MenuItemProps> = ({ to, title, active, handleSection }) => {
           },
         }}
       >
-        <Link to={to} smooth duration={500} onClick={() => handleSection(to)}>
-          {title}
-        </Link>
+        {title}
       </Typography>
     </Box>
   );

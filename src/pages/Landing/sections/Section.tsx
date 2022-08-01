@@ -1,17 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
+import SectionEnum from '../../../enums/SectionEnum';
+import { useAppSelector } from '../../../hooks/redux';
 
 interface SectionProps {
-  id: string;
+  id: SectionEnum;
   children: React.ReactNode;
 }
 
 const Section: FC<SectionProps> = ({ id, children }) => {
+  const ref = useRef<null | HTMLDivElement>(null);
+  const { section } = useAppSelector((state) => state.landing);
+
+  useEffect(() => {
+    if (id === section) {
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [id, section]);
+
   return (
     <Box
-      id={id}
+      ref={ref}
       sx={{
-        height: '100vh',
+        height: '100%',
       }}
     >
       {children}

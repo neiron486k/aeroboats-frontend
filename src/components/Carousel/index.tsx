@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Box, Container, Slide as SlideAnimation, Typography } from '@mui/material';
+import { Box, Container, Slide as SlideAnimation, Typography, useTheme } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Item from './models/Item';
 import Point from './Point';
 
@@ -11,6 +12,8 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
   const [currentItem, setCurrentItem] = useState<Item>(items[0]);
   const autoPlay: string = process.env.REACT_APP_CAROUSEL_AUTOPLAY;
   const [play, setPlay] = useState<boolean>(true);
+  const theme = useTheme();
+  const smViewDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const playTimeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
@@ -86,21 +89,21 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
             >
               <Box>
                 <SlideAnimation direction="right" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant="h5">
+                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
                     {item.leftContent}
                   </Typography>
                 </SlideAnimation>
               </Box>
               <Box justifyContent="center" display="flex">
                 <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant="h2">
+                  <Typography color="white" variant={smViewDown ? 'h4' : 'h2'} component="div">
                     {item.centerContent}
                   </Typography>
                 </SlideAnimation>
               </Box>
               <Box sx={{ textAlign: 'right' }}>
                 <SlideAnimation direction="left" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant="h5">
+                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
                     {item.rightContent}
                   </Typography>
                 </SlideAnimation>

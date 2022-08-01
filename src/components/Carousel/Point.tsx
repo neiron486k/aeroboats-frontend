@@ -14,7 +14,7 @@ const Point: FC<PointProps> = ({ active, onClick }) => {
       sx={{
         borderRadius: '50%',
         margin: '5px',
-        padding: '10px',
+        padding: '5px',
         cursor: 'pointer',
         background: `${activeBackground}`,
       }}
