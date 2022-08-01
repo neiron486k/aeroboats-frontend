@@ -44,9 +44,9 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
 
     const doPlay = () => {
       if (currentItemPosition < pages) {
-        slideLeft();
+        setCurrentItem(items[currentItemPosition + 1]);
       } else if (currentItemPosition === pages) {
-        slideRight();
+        setCurrentItem(items[0]);
       }
     };
 
@@ -57,7 +57,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
     }
 
     return () => clearInterval(playInterval);
-  }, [currentItemPosition, pages, play, autoPlay, slideLeft, slideRight]);
+  }, [currentItemPosition, items, pages, play, autoPlay]);
 
   return (
     <Box
