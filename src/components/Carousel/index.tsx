@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Box, Container, Slide as SlideAnimation, Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSwipeable } from 'react-swipeable';
 import Item from './models/Item';
 import Point from './Point';
 
@@ -14,18 +15,38 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
   const [play, setPlay] = useState<boolean>(true);
   const theme = useTheme();
   const smViewDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const pages = items.length - 1;
+  const currentItemPosition = items.indexOf(currentItem);
+
+  const slideLeft = useCallback(() => {
+    if (currentItemPosition < pages) {
+      setCurrentItem(items[currentItemPosition + 1]);
+    } else {
+      setCurrentItem(items[0]);
+    }
+  }, [items, currentItemPosition, pages]);
+
+  const slideRight = useCallback(() => {
+    if (currentItemPosition > 0 && currentItemPosition <= pages) {
+      setCurrentItem(items[currentItemPosition - 1]);
+    } else {
+      setCurrentItem(items[pages]);
+    }
+  }, [items, currentItemPosition, pages]);
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => slideLeft(),
+    onSwipedRight: () => slideRight(),
+  });
 
   useEffect(() => {
     const playTimeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
 
     const doPlay = () => {
-      const pages = items.length - 1;
-      const currentItemPosition = items.indexOf(currentItem);
-
       if (currentItemPosition < pages) {
-        setCurrentItem(items[currentItemPosition + 1]);
+        slideLeft();
       } else if (currentItemPosition === pages) {
-        setCurrentItem(items[0]);
+        slideRight();
       }
     };
 
@@ -36,10 +57,11 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
     }
 
     return () => clearInterval(playInterval);
-  }, [currentItem, play, autoPlay, items]);
+  }, [currentItemPosition, pages, play, autoPlay, slideLeft, slideRight]);
 
   return (
     <Box
+      {...handlers}
       component="div"
       sx={{ height: '100%' }}
       display="flex"
