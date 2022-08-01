@@ -10,22 +10,18 @@ const menuItems = [
   {
     to: SectionEnum.HOME,
     title: 'Начало',
-    variant: 'h4',
-  },
-  {
-    to: SectionEnum.CATALOG,
-    title: 'Каталог',
-    variant: 'h4',
   },
   {
     to: SectionEnum.ABOUT,
     title: 'О нас',
-    variant: 'h4',
+  },
+  {
+    to: SectionEnum.CATALOG,
+    title: 'Каталог',
   },
   {
     to: SectionEnum.CONTACTS,
     title: 'Контакты',
-    variant: 'h4',
   },
 ];
 

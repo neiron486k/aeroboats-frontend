@@ -5,6 +5,7 @@ import Home from './sections/Home';
 import Catalog from './sections/Catalog';
 import About from './sections/About';
 import Contacts from './sections/Contacts';
+import VerticalNavigation from '../../components/VerticalNavigation';
 
 const Landing: FC = () => {
   return (
@@ -16,6 +17,7 @@ const Landing: FC = () => {
       }}
     >
       <Header />
+      <VerticalNavigation />
       <Home />
       <Catalog />
       <About />
