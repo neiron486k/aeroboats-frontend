@@ -3,7 +3,7 @@ import { Box, Container, Slide as SlideAnimation, Typography, useTheme } from '@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSwipeable } from 'react-swipeable';
 import Item from './models/Item';
-import Point from './Point';
+import Point from '../Navigation/Point';
 
 interface CarouselProps {
   items: Item[];

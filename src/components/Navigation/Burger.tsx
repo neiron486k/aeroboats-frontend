@@ -4,28 +4,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setSection } from '../../store/reducers/ActionCreators';
-import MenuItem from './MenuItem';
+import BurgerItem from './BurgerItem';
+import sections from '../../routes/sections';
 
-const menuItems = [
-  {
-    to: SectionEnum.HOME,
-    title: 'Начало',
-  },
-  {
-    to: SectionEnum.ABOUT,
-    title: 'О нас',
-  },
-  {
-    to: SectionEnum.CATALOG,
-    title: 'Каталог',
-  },
-  {
-    to: SectionEnum.CONTACTS,
-    title: 'Контакты',
-  },
-];
-
-const Menu: FC = () => {
+const Burger: FC = () => {
   const { section } = useAppSelector((state) => state.landing);
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState<boolean>(false);
@@ -60,14 +42,14 @@ const Menu: FC = () => {
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          {menuItems.map((item, index) => {
+          {sections.map((item, index) => {
             const slideDirection = index % 2 === 0 ? 'left' : 'right';
-            const active = item.to === section;
+            const active = item.key === section;
 
             return (
-              <Slide key={item.to} direction={slideDirection} in={open} timeout={500}>
+              <Slide key={item.key} direction={slideDirection} in={open} timeout={500}>
                 <div>
-                  <MenuItem {...item} active={active} handleSection={handleSection} />
+                  <BurgerItem active={active} text={item.text} handleClick={() => handleSection(item.key)} />
                 </div>
               </Slide>
             );
@@ -78,4 +60,4 @@ const Menu: FC = () => {
   );
 };
 
-export default Menu;
+export default Burger;
