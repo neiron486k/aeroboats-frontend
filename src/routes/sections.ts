@@ -1,10 +1,17 @@
+import React from 'react';
 import SectionEnum from '../enums/SectionEnum';
 import About from '../pages/Landing/sections/About';
 import Home from '../pages/Landing/sections/Home';
 import Catalog from '../pages/Landing/sections/Catalog';
 import Contacts from '../pages/Landing/sections/Contacts';
 
-export default [
+interface SectionProps {
+  key: SectionEnum;
+  text: string;
+  component: React.FC;
+}
+
+const sections: SectionProps[] = [
   {
     key: SectionEnum.HOME,
     text: 'Главная',
@@ -26,3 +33,5 @@ export default [
     component: Contacts,
   },
 ];
+
+export default sections;
