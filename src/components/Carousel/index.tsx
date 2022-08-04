@@ -1,61 +1,155 @@
-import React, {FC, useState} from 'react';
-import {Box} from "@mui/material";
-import Slide from "../../models/Slide";
-import Point from "./Point";
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { Box, Container, Slide as SlideAnimation, Typography, useTheme } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSwipeable } from 'react-swipeable';
+import Item from './models/Item';
+import Point from '../Navigation/Point';
 
 interface CarouselProps {
-    slides: Slide[]
+  items: Item[];
 }
 
-const Carousel: FC<CarouselProps> = ({slides}) => {
-    const [position, setPosition] = useState(0);
-    const slide = slides[position];
+const Carousel: FC<CarouselProps> = ({ items }) => {
+  const [currentItem, setCurrentItem] = useState<Item>(items[0]);
+  const autoPlay: string = process.env.REACT_APP_CAROUSEL_AUTOPLAY;
+  const [play, setPlay] = useState<boolean>(true);
+  const theme = useTheme();
+  const smViewDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const pages = items.length - 1;
+  const currentItemPosition = items.indexOf(currentItem);
 
-    const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === 'ArrowLeft' && position !== 0) {
-            setPosition(position - 1);
-        } else if (e.key === 'ArrowRight' && position < slides.length - 1) {
-            setPosition(position + 1);
-        }
+  const slideLeft = useCallback(() => {
+    if (currentItemPosition < pages) {
+      setCurrentItem(items[currentItemPosition + 1]);
+    } else {
+      setCurrentItem(items[0]);
+    }
+  }, [items, currentItemPosition, pages]);
+
+  const slideRight = useCallback(() => {
+    if (currentItemPosition > 0 && currentItemPosition <= pages) {
+      setCurrentItem(items[currentItemPosition - 1]);
+    } else {
+      setCurrentItem(items[pages]);
+    }
+  }, [items, currentItemPosition, pages]);
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => slideLeft(),
+    onSwipedRight: () => slideRight(),
+  });
+
+  useEffect(() => {
+    const playTimeout = +(process.env.REACT_APP_CAROUSEL_TIMEOUT || 1000);
+
+    const doPlay = () => {
+      if (currentItemPosition < pages) {
+        setCurrentItem(items[currentItemPosition + 1]);
+      } else if (currentItemPosition === pages) {
+        setCurrentItem(items[0]);
+      }
+    };
+
+    const playInterval = setInterval(doPlay, playTimeout);
+
+    if (!play || autoPlay === 'no') {
+      clearInterval(playInterval);
     }
 
-    const flip = (event: React.TouchEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        const firstTouch = event.touches[0];
-        console.log(firstTouch);
-    }
+    return () => clearInterval(playInterval);
+  }, [currentItemPosition, items, pages, play, autoPlay]);
 
-    return (
-        <Box
+  return (
+    <Box
+      {...handlers}
+      component="div"
+      sx={{ height: '100%' }}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      onMouseOver={() => setPlay(false)}
+      onMouseLeave={() => setPlay(true)}
+    >
+      {items.map((item) => {
+        const opacity = currentItem.id === item.id ? 1 : 0;
+        const timeout = 1000;
+
+        return (
+          <Box
+            key={item.id}
             sx={{
-                height: '100%',
-                background: `url(${slide.image})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              transition: '0.5s ease',
+              opacity,
             }}
-            tabIndex={0}
-            onTouchEnd={flip}
-        >
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+          >
+            {currentItem.id === item.id && (
+              <Box
+                sx={{
+                  height: '100%',
+                  background: `url(${item.image})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  filter: `brightness(0.7)`,
+                }}
+                justifyContent="center"
+                display="flex"
+                alignItems="center"
+              />
+            )}
+            <Container
+              sx={{
                 position: 'absolute',
-                bottom: 0,
-                width: '100%'
-            }}
+                overflow: 'hidden',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
             >
-                {slides.map((item, index) => (
-                    <Point
-                        key={index}
-                        onClick={() => setPosition(index)}
-                        active={position === index}
-                    />
-                ))}
-            </Box>
-        </Box>
-    );
+              <Box>
+                <SlideAnimation direction="right" in={currentItem.id === item.id} timeout={timeout}>
+                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
+                    {item.leftContent}
+                  </Typography>
+                </SlideAnimation>
+              </Box>
+              <Box justifyContent="center" display="flex">
+                <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
+                  <Typography color="white" variant={smViewDown ? 'h4' : 'h2'} component="div">
+                    {item.centerContent}
+                  </Typography>
+                </SlideAnimation>
+              </Box>
+              <Box sx={{ textAlign: 'right' }}>
+                <SlideAnimation direction="left" in={currentItem.id === item.id} timeout={timeout}>
+                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
+                    {item.rightContent}
+                  </Typography>
+                </SlideAnimation>
+              </Box>
+            </Container>
+          </Box>
+        );
+      })}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          display: 'flex',
+          width: '100%',
+          padding: '5px',
+        }}
+        justifyContent="center"
+      >
+        {items.map((item) => {
+          return <Point key={item.id} active={currentItem.id === item.id} onClick={() => setCurrentItem(item)} />;
+        })}
+      </Box>
+    </Box>
+  );
 };
 
 export default Carousel;

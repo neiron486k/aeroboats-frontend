@@ -1,16 +1,17 @@
-import React, {FC} from 'react';
-import Header from "./components/Header";
-import {CssBaseline} from "@mui/material";
-import Catalog from "./sections/Catalog";
-import Home from "./sections/Home";
+import React, { FC } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import Landing from './pages/Landing';
+import setupTheme from './theme';
 
-const App: FC = () => (
-    <div>
-        <CssBaseline/>
-        <Header/>
-        <Home/>
-        <Catalog/>
-    </div>
-)
+const theme = setupTheme();
+
+const App: FC = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Landing />
+    </ThemeProvider>
+  );
+};
 
 export default App;
