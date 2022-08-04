@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
 import { Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { FC } from 'react';
 
 interface BurgerItemProps {
   active: boolean;

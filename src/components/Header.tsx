@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
 import { AppBar, Toolbar } from '@mui/material';
+import React, { FC } from 'react';
+
 import Burger from './Navigation/Burger';
 
 const Header: FC = () => {

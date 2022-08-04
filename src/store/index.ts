@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import LandingSlice from './reducers/LandingSlice';
 
 const rootReducer = combineReducers({

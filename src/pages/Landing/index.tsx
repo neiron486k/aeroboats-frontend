@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
 import { Box } from '@mui/material';
+import React, { FC } from 'react';
+
 import Header from '../../components/Header';
 import sections from '../../routes/sections';
 import Section from './sections/Section';

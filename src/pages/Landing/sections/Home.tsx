@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
 import { Box, Button } from '@mui/material';
+import React, { FC } from 'react';
+
 import Carousel from '../../../components/Carousel';
 import Item from '../../../components/Carousel/models/Item';
-import Section from './Section';
 import SectionEnum from '../../../enums/SectionEnum';
+import Section from './Section';
 
 const items: Item[] = [
   {

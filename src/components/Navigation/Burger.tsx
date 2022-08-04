@@ -1,11 +1,12 @@
-import React, { FC, useState } from 'react';
-import { Box, IconButton, Modal, Slide } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Box, IconButton, Modal, Slide } from '@mui/material';
+import React, { FC, useState } from 'react';
+
 import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import sections from '../../routes/sections';
 import { setSection } from '../../store/reducers/ActionCreators';
 import BurgerItem from './BurgerItem';
-import sections from '../../routes/sections';
 
 const Burger: FC = () => {
   const { section } = useAppSelector((state) => state.landing);

@@ -1,9 +1,10 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Box, Container, Slide as SlideAnimation, Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import Item from './models/Item';
+
 import Point from '../Navigation/Point';
+import Item from './models/Item';
 
 interface CarouselProps {
   items: Item[];

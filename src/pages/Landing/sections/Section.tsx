@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
+import React, { FC, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
 import SectionEnum from '../../../enums/SectionEnum';
 import useIntersection from '../../../hooks/useIntersection';
 import { setSection } from '../../../store/reducers/ActionCreators';

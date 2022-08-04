@@ -1,9 +1,10 @@
 import React from 'react';
+
 import SectionEnum from '../enums/SectionEnum';
 import About from '../pages/Landing/sections/About';
-import Home from '../pages/Landing/sections/Home';
 import Catalog from '../pages/Landing/sections/Catalog';
 import Contacts from '../pages/Landing/sections/Contacts';
+import Home from '../pages/Landing/sections/Home';
 
 interface SectionProps {
   key: SectionEnum;
