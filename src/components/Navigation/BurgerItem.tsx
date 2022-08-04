@@ -4,11 +4,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface BurgerItemProps {
   active: boolean;
-  text: string;
+  title: string;
   handleClick: () => void;
 }
 
-const BurgerItem: FC<BurgerItemProps> = ({ active, text, handleClick }) => {
+const BurgerItem: FC<BurgerItemProps> = ({ active, title, handleClick }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -27,7 +27,7 @@ const BurgerItem: FC<BurgerItemProps> = ({ active, text, handleClick }) => {
         },
       }}
     >
-      {text}
+      {title}
     </Typography>
   );
 };

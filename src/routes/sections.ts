@@ -7,29 +7,29 @@ import Contacts from '../pages/Landing/sections/Contacts';
 
 interface SectionProps {
   key: SectionEnum;
-  text: string;
+  title: string;
   component: React.FC;
 }
 
 const sections: SectionProps[] = [
   {
     key: SectionEnum.HOME,
-    text: 'Главная',
+    title: 'Главная',
     component: Home,
   },
   {
     key: SectionEnum.ABOUT,
-    text: 'О нас',
+    title: 'О нас',
     component: About,
   },
   {
     key: SectionEnum.CATALOG,
-    text: 'Каталог',
+    title: 'Каталог',
     component: Catalog,
   },
   {
     key: SectionEnum.CONTACTS,
-    text: 'Контакты',
+    title: 'Контакты',
     component: Contacts,
   },
 ];

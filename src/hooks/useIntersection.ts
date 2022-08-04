@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 
-const useSection = (ref: MutableRefObject<HTMLDivElement | null>) => {
+const useIntersection = (ref: MutableRefObject<HTMLDivElement | null>) => {
   const [intersect, setIntersect] = useState(false);
 
   useEffect(() => {
@@ -9,6 +9,8 @@ const useSection = (ref: MutableRefObject<HTMLDivElement | null>) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIntersect(true);
+          } else {
+            setIntersect(false);
           }
         });
       },
@@ -25,4 +27,4 @@ const useSection = (ref: MutableRefObject<HTMLDivElement | null>) => {
   return intersect;
 };
 
-export default useSection;
+export default useIntersection;

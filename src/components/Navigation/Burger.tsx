@@ -12,9 +12,14 @@ const Burger: FC = () => {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState<boolean>(false);
 
+  const scrollToElement = (id: SectionEnum) => {
+    document.getElementById(id)?.scrollIntoView();
+  };
+
   const handleSection = (selectedSection: SectionEnum) => {
     dispatch(setSection(selectedSection));
     setOpen(false);
+    scrollToElement(selectedSection);
   };
 
   return (
@@ -49,7 +54,7 @@ const Burger: FC = () => {
             return (
               <Slide key={item.key} direction={slideDirection} in={open} timeout={500}>
                 <div>
-                  <BurgerItem active={active} text={item.text} handleClick={() => handleSection(item.key)} />
+                  <BurgerItem active={active} title={item.title} handleClick={() => handleSection(item.key)} />
                 </div>
               </Slide>
             );
