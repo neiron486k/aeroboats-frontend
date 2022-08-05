@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useIntersectionObserver } from 'react-intersection-observer-hook';
 import { useDispatch } from 'react-redux';
 
 import SectionEnum from '../../../enums/SectionEnum';
-import useIntersection from '../../../hooks/useIntersection';
 import { setSection } from '../../../store/reducers/ActionCreators';
 
 interface SectionProps {
@@ -12,16 +12,15 @@ interface SectionProps {
 }
 
 const Section: FC<SectionProps> = ({ id, children }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isIntersect = useIntersection(ref);
+  const [ref, { entry }] = useIntersectionObserver({ threshold: 0.7 });
+  const isVisible = entry && entry.isIntersecting;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isIntersect) {
-      window.location.href = `#${id}`;
+    if (isVisible) {
       dispatch(setSection(id));
     }
-  }, [isIntersect, id, dispatch]);
+  }, [isVisible, id, dispatch]);
 
   return (
     <Box

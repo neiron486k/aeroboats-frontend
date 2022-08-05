@@ -3,8 +3,6 @@ import React, { FC } from 'react';
 
 import Carousel from '../../../components/Carousel';
 import Item from '../../../components/Carousel/models/Item';
-import SectionEnum from '../../../enums/SectionEnum';
-import Section from './Section';
 
 const items: Item[] = [
   {
@@ -38,10 +36,6 @@ const items: Item[] = [
   },
 ];
 
-const Home: FC = () => (
-  <Section id={SectionEnum.HOME}>
-    <Carousel items={items} />
-  </Section>
-);
+const Home: FC = () => <Carousel items={items} />;
 
 export default Home;
