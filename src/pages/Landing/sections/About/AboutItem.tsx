@@ -29,7 +29,18 @@ const AboutItem: FC<AboutItemProps> = ({ show, image, title, text, timeout, heig
         }}
         order={!rightImage ? 1 : 2}
       >
-        <Typography variant="h3" component="div" sx={{ mixBlendMode: 'screen', background: '#fff', p: 2, br: 3 }}>
+        <Typography
+          variant="h3"
+          component="div"
+          sx={{
+            mixBlendMode: 'screen',
+            background: '#fff',
+            p: 2,
+            br: 3,
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+          }}
+        >
           {title}
         </Typography>
       </Grid>
