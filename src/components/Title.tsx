@@ -1,18 +1,18 @@
 import { Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
-import React, { FC } from 'react';
+import React from 'react';
 
 interface TitleProps {
   children: React.ReactNode;
   variant: Variant;
 }
 
-const Title: FC<TitleProps> = ({ children, variant }) => {
+const Title = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   return (
-    <Typography variant={variant} sx={{ mb: 1, width: '100%', textAlign: 'center' }}>
-      {children}
+    <Typography {...props} ref={ref} sx={{ mb: 1, width: '100%', textAlign: 'center' }}>
+      {props.children}
     </Typography>
   );
-};
+});
 
 export default Title;

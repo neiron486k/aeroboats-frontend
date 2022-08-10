@@ -1,35 +1,44 @@
-import { Grid, Typography } from '@mui/material';
+import { Fade, Grid, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 interface AboutItemProps {
-  content: React.ReactNode;
+  show: boolean;
   image: string;
-  right: boolean;
+  title: string;
+  text: string;
+  timeout: number;
+  height: string | number;
+  rightImage: boolean;
 }
 
-const AboutItem: FC<AboutItemProps> = ({ content, image, right }) => {
-  const imageOrder = right ? 1 : 2;
-  const contextOrder = right ? 2 : 1;
-  const contextPadding = right ? { pl: 1 } : { pr: 1 };
-
+const AboutItem: FC<AboutItemProps> = ({ show, image, title, text, timeout, height, rightImage }) => {
   return (
-    <Grid container>
+    <>
       <Grid
-        order={imageOrder}
         item
-        md={4}
-        xs={12}
+        md={8}
         sx={{
-          minHeight: 200,
+          height,
           background: `url(${image})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
-      <Grid item md={8} xs={12} order={contextOrder} sx={contextPadding}>
-        <Typography>{content}</Typography>
+        order={!rightImage ? 1 : 2}
+      >
+        <Typography variant="h3" component="div" sx={{ mixBlendMode: 'screen', background: '#fff', p: 2, br: 3 }}>
+          {title}
+        </Typography>
       </Grid>
-    </Grid>
+      <Grid item md={4} p={2} order={rightImage ? 1 : 2}>
+        <Fade in={show} timeout={timeout}>
+          <Typography>{text}</Typography>
+        </Fade>
+      </Grid>
+    </>
   );
 };
 
