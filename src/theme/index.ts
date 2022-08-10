@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material';
 const setupTheme = () =>
   createTheme({
     typography: {
-      fontFamily: ['Jura', 'Roboto', 'Arial', 'sans-serif'].join(','),
+      fontFamily: ['Roboto', 'Arial', 'sans-serif'].join(','),
     },
   });
 
