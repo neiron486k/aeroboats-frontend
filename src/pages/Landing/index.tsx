@@ -12,6 +12,7 @@ const Landing: FC = () => {
         height: '100vh',
         position: 'relative',
         scrollSnapType: 'y mandatory',
+        overflowX: 'hidden',
         overflowY: 'scroll',
       }}
     >
