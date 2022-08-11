@@ -9,7 +9,7 @@ const aboutItems = [
   {
     id: 1,
     title: 'O нас',
-    text: 'Какое-то описание о том, что мы самые лучшие и в нужно иметь дель и покупать у нас лодки',
+    text: 'Какое-то описание о том, что мы самые лучшие и c нами нужно иметь дело, покупать у нас лодки',
     image: 'https://picsum.photos/200/300',
   },
   {
@@ -29,15 +29,9 @@ const About: FC = () => {
   return (
     <Grid container sx={{ position: 'relative', height: '100%' }}>
       {aboutItems.map((item, index) => {
+        const inverse = index % 2 !== 0;
         return (
-          <AboutItem
-            rightImage={index % 2 !== 0}
-            key={item.id}
-            {...item}
-            show={show}
-            height={rowHeight}
-            timeout={timeout}
-          />
+          <AboutItem rightImage={inverse} key={item.id} {...item} show={show} height={rowHeight} timeout={timeout} />
         );
       })}
     </Grid>
