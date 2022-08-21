@@ -110,27 +110,22 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <Box>
-                <SlideAnimation direction="right" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
-                    {item.leftContent}
-                  </Typography>
-                </SlideAnimation>
-              </Box>
-              <Box justifyContent="center" display="flex">
-                <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant={smViewDown ? 'h4' : 'h2'} component="div">
-                    {item.centerContent}
-                  </Typography>
-                </SlideAnimation>
-              </Box>
-              <Box sx={{ textAlign: 'right' }}>
-                <SlideAnimation direction="left" in={currentItem.id === item.id} timeout={timeout}>
-                  <Typography color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
-                    {item.rightContent}
-                  </Typography>
-                </SlideAnimation>
-              </Box>
+              <SlideAnimation direction="down" in={currentItem.id === item.id} timeout={timeout}>
+                <Typography
+                  textAlign="center"
+                  color="white"
+                  variant={smViewDown ? 'h4' : 'h2'}
+                  component="div"
+                  sx={{ mb: 1.2 }}
+                >
+                  {item.title}
+                </Typography>
+              </SlideAnimation>
+              <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
+                <Typography textAlign="center" color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
+                  {item.text}
+                </Typography>
+              </SlideAnimation>
             </Container>
           </Box>
         );
