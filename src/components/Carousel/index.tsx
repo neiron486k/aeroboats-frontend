@@ -4,36 +4,36 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
 import Point from '../Navigation/Point';
-import Item from './models/Item';
+import Slide from './models/Slide';
 
 interface CarouselProps {
-  items: Item[];
+  slides: Slide[];
 }
 
-const Carousel: FC<CarouselProps> = ({ items }) => {
-  const [currentItem, setCurrentItem] = useState<Item>(items[0]);
+const Carousel: FC<CarouselProps> = ({ slides }) => {
+  const [currentItem, setCurrentItem] = useState<Slide>(slides[0]);
   const autoPlay: string = process.env.REACT_APP_CAROUSEL_AUTOPLAY;
   const [play, setPlay] = useState<boolean>(true);
   const theme = useTheme();
   const smViewDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const pages = items.length - 1;
-  const currentItemPosition = items.indexOf(currentItem);
+  const pages = slides.length - 1;
+  const currentItemPosition = slides.indexOf(currentItem);
 
   const slideLeft = useCallback(() => {
     if (currentItemPosition < pages) {
-      setCurrentItem(items[currentItemPosition + 1]);
+      setCurrentItem(slides[currentItemPosition + 1]);
     } else {
-      setCurrentItem(items[0]);
+      setCurrentItem(slides[0]);
     }
-  }, [items, currentItemPosition, pages]);
+  }, [slides, currentItemPosition, pages]);
 
   const slideRight = useCallback(() => {
     if (currentItemPosition > 0 && currentItemPosition <= pages) {
-      setCurrentItem(items[currentItemPosition - 1]);
+      setCurrentItem(slides[currentItemPosition - 1]);
     } else {
-      setCurrentItem(items[pages]);
+      setCurrentItem(slides[pages]);
     }
-  }, [items, currentItemPosition, pages]);
+  }, [slides, currentItemPosition, pages]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => slideLeft(),
@@ -45,9 +45,9 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
 
     const doPlay = () => {
       if (currentItemPosition < pages) {
-        setCurrentItem(items[currentItemPosition + 1]);
+        setCurrentItem(slides[currentItemPosition + 1]);
       } else if (currentItemPosition === pages) {
-        setCurrentItem(items[0]);
+        setCurrentItem(slides[0]);
       }
     };
 
@@ -58,7 +58,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
     }
 
     return () => clearInterval(playInterval);
-  }, [currentItemPosition, items, pages, play, autoPlay]);
+  }, [currentItemPosition, slides, pages, play, autoPlay]);
 
   return (
     <Box
@@ -71,7 +71,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
       onMouseOver={() => setPlay(false)}
       onMouseLeave={() => setPlay(true)}
     >
-      {items.map((item) => {
+      {slides.map((item) => {
         const opacity = currentItem.id === item.id ? 1 : 0;
         const timeout = 1000;
 
@@ -90,7 +90,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
               <Box
                 sx={{
                   height: '100%',
-                  background: `url(${item.image})`,
+                  background: `url(${item.thumbnail})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
@@ -123,7 +123,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
               </SlideAnimation>
               <SlideAnimation direction="up" in={currentItem.id === item.id} timeout={timeout}>
                 <Typography textAlign="center" color="white" variant={smViewDown ? 'body1' : 'h5'} component="div">
-                  {item.text}
+                  {item.description}
                 </Typography>
               </SlideAnimation>
             </Container>
@@ -140,7 +140,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
         }}
         justifyContent="center"
       >
-        {items.map((item) => {
+        {slides.map((item) => {
           return <Point key={item.id} active={currentItem.id === item.id} onClick={() => setCurrentItem(item)} />;
         })}
       </Box>
