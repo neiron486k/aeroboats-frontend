@@ -1,8 +1,8 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React, { FC } from 'react';
 
+import setupTheme from './config/theme';
 import Landing from './pages/Landing';
-import setupTheme from './theme';
 
 const theme = setupTheme();
 
