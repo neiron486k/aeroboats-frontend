@@ -2,9 +2,9 @@ import React from 'react';
 
 import SectionEnum from '../enums/SectionEnum';
 import About from '../pages/Landing/sections/About';
-import Catalog from '../pages/Landing/sections/Catalog';
 import Contacts from '../pages/Landing/sections/Contacts';
 import Home from '../pages/Landing/sections/Home';
+import Products from '../pages/Landing/sections/Products';
 
 interface SectionProps {
   key: SectionEnum;
@@ -26,7 +26,7 @@ const sections: SectionProps[] = [
   {
     key: SectionEnum.CATALOG,
     title: 'Каталог',
-    component: Catalog,
+    component: Products,
   },
   {
     key: SectionEnum.CONTACTS,
