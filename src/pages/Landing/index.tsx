@@ -2,8 +2,8 @@ import { Box } from '@mui/material';
 import React, { FC } from 'react';
 
 import Header from '../../components/Header';
+import Section from '../../components/Section';
 import sections from '../../routes/sections';
-import Section from './sections/Section';
 
 const Landing: FC = () => {
   return (

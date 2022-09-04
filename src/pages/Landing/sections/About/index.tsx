@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { FC } from 'react';
 
+import boat from '../../../../assets/images/boat.jpg';
 import SectionEnum from '../../../../enums/SectionEnum';
 import { useAppSelector } from '../../../../hooks/redux';
 import AboutItem from './AboutItem';
@@ -10,7 +11,7 @@ const aboutItems = [
     id: 1,
     title: 'O нас',
     text: 'Какое-то описание о том, что мы самые лучшие и c нами нужно иметь дело, покупать у нас лодки',
-    image: 'https://picsum.photos/200/300',
+    image: boat,
   },
   {
     id: 2,

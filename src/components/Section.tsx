@@ -3,8 +3,8 @@ import React, { FC, useEffect } from 'react';
 import { useIntersectionObserver } from 'react-intersection-observer-hook';
 import { useDispatch } from 'react-redux';
 
-import SectionEnum from '../../../enums/SectionEnum';
-import { setSection } from '../../../store/reducers/ActionCreators';
+import SectionEnum from '../enums/SectionEnum';
+import { setSection } from '../store/reducers/ActionCreators';
 
 interface SectionProps {
   id: SectionEnum;
