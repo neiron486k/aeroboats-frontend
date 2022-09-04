@@ -90,7 +90,7 @@ const Carousel: FC<CarouselProps> = ({ slides }) => {
               <Box
                 sx={{
                   height: '100%',
-                  background: `url(${item.thumbnail})`,
+                  background: `url(${item.cover})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
