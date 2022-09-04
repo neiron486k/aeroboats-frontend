@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React, { FC } from 'react';
 
 import Carousel from '../../../components/Carousel';
-import { useGetSlidesQuery } from '../../../store/reducers/api/carouselSlice';
+import { useGetSlidesQuery } from '../../../services/carousel';
 
 const Home: FC = () => {
   const { data: carousel, isSuccess } = useGetSlidesQuery(1);

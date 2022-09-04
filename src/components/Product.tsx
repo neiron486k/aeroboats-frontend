@@ -1,13 +1,10 @@
+import { Box } from '@mui/material';
 import React, { FC } from 'react';
 
-export interface IProduct {
-  name: string;
-  description: string;
-  price: number;
-}
+import ProductProps from '../interfaces/ProductProps';
 
-const Product: FC<IProduct> = () => {
-  return <div>Product</div>;
+const Product: FC<ProductProps> = ({ name, description, price }) => {
+  return <Box sx={{ height: '100%' }}>{name}</Box>;
 };
 
 export default Product;

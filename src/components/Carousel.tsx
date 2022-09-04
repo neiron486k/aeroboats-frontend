@@ -3,8 +3,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-import Point from '../Navigation/Point';
-import Slide from './models/Slide';
+import Slide from '../interfaces/SlideProps';
+import Point from './Navigation/Point';
 
 interface CarouselProps {
   slides: Slide[];

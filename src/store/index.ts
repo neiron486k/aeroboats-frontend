@@ -1,17 +1,19 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { carouselApi } from '../services/carousel';
+import { productsApi } from '../services/product';
 import LandingSlice from './reducers/LandingSlice';
-import { carouselSlice } from './reducers/api/carouselSlice';
 
 const rootReducer = combineReducers({
   landing: LandingSlice,
-  [carouselSlice.reducerPath]: carouselSlice.reducer,
+  [carouselApi.reducerPath]: carouselApi.reducer,
+  [productsApi.reducerPath]: productsApi.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(carouselSlice.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(carouselApi.middleware, productsApi.middleware),
   });
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default interface Slide {
+export default interface SlideProps {
   id: number;
   cover: string;
   title: React.ReactNode;
