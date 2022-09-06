@@ -1,13 +1,21 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { ImageList, ImageListItem } from '@mui/material';
+import React, { useState } from 'react';
 
 import Product from '../../../components/Product';
 import { useGetProductsQuery } from '../../../services/product';
 
 const Products = () => {
-  const { data: products, isSuccess } = useGetProductsQuery(1);
+  const [page, setPage] = useState(1);
+  const { data: products, isSuccess } = useGetProductsQuery(page);
 
-  return <Box>{isSuccess && products.results.map((product) => <Product key={product.id} {...product} />)}</Box>;
+  return (
+    <ImageList sx={{ height: '100%' }} cols={3} gap={2}>
+      {isSuccess &&
+        products.results.map((product) => {
+          return <Product key={product.id} {...product} />;
+        })}
+    </ImageList>
+  );
 };
 
 export default Products;
