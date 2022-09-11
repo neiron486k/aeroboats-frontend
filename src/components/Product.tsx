@@ -14,13 +14,15 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
   useEffect(() => setHeight(`${getTitleHeight()}px`), []);
 
   const handleMouseEnter = () => {
-    setHeight('100%');
+    setHeight('80%');
+    setShowDesc(true);
   };
 
   const handleMouseLeave = () => {
     const titleHeight = getTitleHeight();
 
     setHeight(`${titleHeight}px`);
+    setShowDesc(false);
   };
 
   return (
@@ -40,6 +42,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <Box sx={{ position: 'absolute', top: 0, right: 0 }}>{price}</Box>
       <Box
         sx={{
           position: 'absolute',
@@ -55,7 +58,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
             color: 'white',
             textAlign: 'center',
             width: '100%',
-            padding: 2,
+            p: 1,
           }}
           variant="h5"
           ref={titleRef}
@@ -63,7 +66,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
           {name}
         </Typography>
         {showDesc && (
-          <Typography sx={{ color: 'white' }} variant="body1">
+          <Typography sx={{ color: 'white', mx: 2 }} variant="body1">
             {description}
           </Typography>
         )}
