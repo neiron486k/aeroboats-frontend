@@ -9,7 +9,7 @@ export const productsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseApiUrl }),
   endpoints: (builder) => ({
     getProducts: builder.query<ListResponse<ProductProps>, number>({
-      query: (page) => `/products/?page=${page}`,
+      query: (page) => `/products/?page_size=${page}`,
     }),
   }),
 });
