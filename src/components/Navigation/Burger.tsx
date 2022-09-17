@@ -24,13 +24,7 @@ const Burger: FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Box>
       {!open && (
         <IconButton size="large" edge="start" color="inherit" aria-label="menu" onClick={() => setOpen(!open)}>
           <MenuIcon />
@@ -41,13 +35,17 @@ const Burger: FC = () => {
         sx={{
           height: '100vh',
           background: 'black',
-          zIndex: 10,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            height: '100%',
+          }}
+        >
           {sections.map((item, index) => {
             const slideDirection = index % 2 === 0 ? 'left' : 'right';
             const active = item.key === section;

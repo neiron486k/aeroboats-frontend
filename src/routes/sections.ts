@@ -25,7 +25,7 @@ const sections: SectionProps[] = [
   },
   {
     key: SectionEnum.CATALOG,
-    title: 'Каталог',
+    title: 'Продукты',
     component: Products,
   },
   {

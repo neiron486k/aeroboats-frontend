@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-import ProductProps from '../interfaces/ProductProps';
+import ProductProps from '../../interfaces/ProductProps';
+import Price from './Price';
 
 const Product: FC<ProductProps> = ({ name, description, price, media }) => {
   const cover = media.filter((item) => item.is_cover)[0] || '';
@@ -42,7 +43,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Box sx={{ position: 'absolute', top: 0, right: 0 }}>{price}</Box>
+      <Price price={price} />
       <Box
         sx={{
           position: 'absolute',
@@ -60,7 +61,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
             width: '100%',
             p: 1,
           }}
-          variant="h5"
+          variant="h6"
           ref={titleRef}
         >
           {name}
