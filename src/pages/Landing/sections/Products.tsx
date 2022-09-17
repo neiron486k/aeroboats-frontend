@@ -9,7 +9,7 @@ const Products = () => {
   const { data: products, isSuccess } = useGetProductsQuery(pageSize);
 
   return (
-    <ImageList sx={{ height: '100%' }} cols={pageSize / 2} gap={1}>
+    <ImageList sx={{ height: '100%', background: '#000' }} cols={pageSize / 2} gap={1}>
       {isSuccess &&
         products.results.map((product) => {
           return <Product key={product.id} {...product} />;

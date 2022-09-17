@@ -5,7 +5,7 @@ interface PriceProps {
   price: number;
 }
 
-const Price: FC<PriceProps> = ({ price }) => {
+const ProductPrice: FC<PriceProps> = ({ price }) => {
   const theme = useTheme();
   const styles = {
     background: theme.palette.primary.dark,
@@ -24,4 +24,4 @@ const Price: FC<PriceProps> = ({ price }) => {
   );
 };
 
-export default Price;
+export default ProductPrice;
