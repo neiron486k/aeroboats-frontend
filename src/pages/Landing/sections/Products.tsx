@@ -1,11 +1,13 @@
-import { ImageList } from '@mui/material';
+import { ImageList, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 
 import Product from '../../../components/Product/Product';
 import { useGetProductsQuery } from '../../../services/product';
 
 const Products = () => {
-  const pageSize = 4;
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const pageSize = matches ? 2 : 4;
   const { data: products, isSuccess } = useGetProductsQuery(pageSize);
 
   return (
