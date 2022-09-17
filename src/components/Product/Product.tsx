@@ -1,12 +1,15 @@
-import { Box } from '@mui/material';
-import React, { FC } from 'react';
+import { Box, useTheme } from '@mui/material';
+import React, { FC, useState } from 'react';
 
 import ProductProps from '../../interfaces/ProductProps';
+import ProductDescription from './ProductDescription';
 import ProductFooter from './ProductFooter';
 import ProductPrice from './ProductPrice';
 
 const Product: FC<ProductProps> = ({ name, description, price, media }) => {
+  const theme = useTheme();
   const cover = media.filter((item) => item.is_cover)[0] || '';
+  const [show, setShow] = useState<boolean>(false);
   const styles = {
     height: '100%',
     background: `url(${cover.path})`,
@@ -14,16 +17,21 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     position: 'relative',
-    overflow: 'hidden',
-    ':hover': {
-      cursor: 'pointer',
-    },
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    color: theme.palette.primary.contrastText,
+  };
+
+  const handleShow = () => {
+    setShow(!show);
   };
 
   return (
     <Box sx={styles}>
       <ProductPrice price={price} />
-      <ProductFooter name={name} />
+      <ProductDescription description={description} show={show} />
+      <ProductFooter name={name} handleShowContent={handleShow} />
     </Box>
   );
 };
