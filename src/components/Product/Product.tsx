@@ -23,7 +23,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
     color: theme.palette.primary.contrastText,
   };
 
-  const handleShow = () => {
+  const toggleShowContent = () => {
     setShow(!show);
   };
 
@@ -31,7 +31,7 @@ const Product: FC<ProductProps> = ({ name, description, price, media }) => {
     <Box sx={styles}>
       <ProductPrice price={price} />
       <ProductDescription description={description} show={show} />
-      <ProductFooter name={name} handleShowContent={handleShow} />
+      <ProductFooter name={name} toggleShowContent={toggleShowContent} />
     </Box>
   );
 };

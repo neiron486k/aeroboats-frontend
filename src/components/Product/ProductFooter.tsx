@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 
 interface ProductContentProps {
   name: string;
-  handleShowContent: () => void;
+  toggleShowContent: () => void;
 }
 
-const ProductFooter: FC<ProductContentProps> = ({ name, handleShowContent }) => {
+const ProductFooter: FC<ProductContentProps> = ({ name, toggleShowContent }) => {
   const theme = useTheme();
 
   return (
@@ -18,11 +18,13 @@ const ProductFooter: FC<ProductContentProps> = ({ name, handleShowContent }) => 
         display: 'flex',
         alignItems: 'center',
       }}
+      onMouseEnter={() => toggleShowContent()}
+      onMouseLeave={() => toggleShowContent()}
     >
-      <Typography variant="h6" onClick={() => handleShowContent()} sx={{ flexGrow: 1 }}>
+      <Typography variant="h6" sx={{ flexGrow: 1 }}>
         {name}
       </Typography>
-      <Rating precision={1} value={5} />
+      <Rating precision={1} value={5} readOnly />
     </Box>
   );
 };
