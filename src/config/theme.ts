@@ -19,6 +19,15 @@ const setupTheme = () =>
         contrastText: '#fff',
       },
     },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            overflowX: 'hidden',
+          },
+        },
+      },
+    },
   });
 
 export default setupTheme;

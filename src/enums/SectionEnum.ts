@@ -2,7 +2,7 @@ enum SectionEnum {
   HOME = 'home',
   ABOUT = 'about',
   CONTACTS = 'contacts',
-  CATALOG = 'catalog',
+  PRODUCTS = 'products',
 }
 
 function getKeyByValue(value: SectionEnum): string {
