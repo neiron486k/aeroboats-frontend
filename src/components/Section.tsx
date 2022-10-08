@@ -29,6 +29,8 @@ const Section: FC<SectionProps> = ({ id, children }) => {
       sx={{
         height: '100vh',
         position: 'relative',
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
       }}
     >
       {children}

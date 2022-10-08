@@ -23,7 +23,7 @@ const setupTheme = () =>
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            overflowX: 'hidden',
+            overflow: 'hidden',
           },
         },
       },
