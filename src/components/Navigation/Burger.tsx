@@ -6,6 +6,7 @@ import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import sections from '../../routes/sections';
 import { setSection } from '../../store/reducers/ActionCreators';
+import scrollToSection from '../../utils/scrollToSection';
 import BurgerItem from './BurgerItem';
 
 const Burger: FC = () => {
@@ -13,14 +14,10 @@ const Burger: FC = () => {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState<boolean>(false);
 
-  const scrollToElement = (id: SectionEnum) => {
-    document.getElementById(id)?.scrollIntoView();
-  };
-
   const handleSection = (selectedSection: SectionEnum) => {
     dispatch(setSection(selectedSection));
     setOpen(false);
-    scrollToElement(selectedSection);
+    scrollToSection(selectedSection);
   };
 
   return (
