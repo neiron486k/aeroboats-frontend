@@ -7,16 +7,7 @@ import sections from '../../routes/sections';
 
 const Landing: FC = () => {
   return (
-    <Box
-      sx={{
-        overflowX: 'hidden',
-        overflowY: 'scroll',
-        height: '100vh',
-        scrollBehavior: 'smooth',
-        scrollSnapType: 'y mandatory',
-        msScrollSnapPointsY: 'repeat(100vh)',
-      }}
-    >
+    <Box>
       <Header />
       {sections.map((item) => (
         <Section id={item.key} key={item.key}>

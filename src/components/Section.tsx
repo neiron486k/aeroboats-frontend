@@ -23,16 +23,7 @@ const Section: FC<SectionProps> = ({ id, children }) => {
   }, [isVisible, id, dispatch]);
 
   return (
-    <Box
-      id={id}
-      ref={ref}
-      sx={{
-        height: '100vh',
-        position: 'relative',
-        scrollSnapAlign: 'center',
-        scrollSnapStop: 'always',
-      }}
-    >
+    <Box id={id} ref={ref}>
       {children}
     </Box>
   );

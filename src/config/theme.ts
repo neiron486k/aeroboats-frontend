@@ -7,15 +7,15 @@ const setupTheme = () =>
     },
     palette: {
       primary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
+        light: '#5e92f3',
+        main: '#1565c0',
+        dark: '#003c8f',
         contrastText: '#fff',
       },
       secondary: {
-        light: '#757ce8',
-        main: '#3f50b5',
-        dark: '#002884',
+        light: '#99d066',
+        main: '#689f38',
+        dark: '#387002',
         contrastText: '#fff',
       },
     },
@@ -23,7 +23,8 @@ const setupTheme = () =>
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            overflow: 'hidden',
+            overflowX: 'hidden',
+            overflowY: 'scroll',
           },
         },
       },
