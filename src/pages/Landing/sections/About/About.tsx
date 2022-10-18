@@ -6,18 +6,22 @@ import AboutCard from './AboutCard';
 const items = [
   {
     image: 'https://api.lorem.space/image/movie?w=150&h=100',
+    title: 'Производство',
     text: 'Конструируем высококачественную продукцию на собственном производстве.',
   },
   {
     image: 'https://api.lorem.space/image/game?w=150&h=100',
+    title: 'Консультация',
     text: 'Готовы проконсультировать по любым товарным вопросам и помочь сделать выбор.',
   },
   {
     image: 'https://api.lorem.space/image/book?w=150&h=100',
+    title: 'Сервис',
     text: 'Оказываем сервисные услуги.',
   },
   {
     image: 'https://api.lorem.space/image/book?w=150&h=100',
+    title: 'Гарантия',
     text: 'Предоставляем гарантийный ремонт',
   },
 ];
