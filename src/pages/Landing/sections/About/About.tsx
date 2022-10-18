@@ -1,41 +1,44 @@
-import { Grid } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Paper, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
-import boat from '../../../../assets/images/boat.jpg';
-import SectionEnum from '../../../../enums/SectionEnum';
-import { useAppSelector } from '../../../../hooks/redux';
-import AboutItem from './AboutItem';
+import AboutCard from './AboutCard';
 
-const aboutItems = [
+const items = [
   {
-    id: 1,
-    title: 'O нас',
-    text: 'Какое-то описание о том, что мы самые лучшие и c нами нужно иметь дело, покупать у нас лодки',
-    image: boat,
+    image: 'https://api.lorem.space/image/movie?w=150&h=100',
+    text: 'Конструируем высококачественную продукцию на собственном производстве.',
   },
   {
-    id: 2,
-    title: 'Чем занимаемся',
-    text: 'Какое-то описание о том, что мы сделаем',
-    image: 'https://picsum.photos/300/400',
+    image: 'https://api.lorem.space/image/game?w=150&h=100',
+    text: 'Готовы проконсультировать по любым товарным вопросам и помочь сделать выбор.',
+  },
+  {
+    image: 'https://api.lorem.space/image/book?w=150&h=100',
+    text: 'Оказываем сервисные услуги.',
+  },
+  {
+    image: 'https://api.lorem.space/image/book?w=150&h=100',
+    text: 'Предоставляем гарантийный ремонт',
   },
 ];
 
 const About: FC = () => {
-  const { section } = useAppSelector((state) => state.landing);
-  const show = section === SectionEnum.ABOUT;
-  const timeout = 1000;
-  const rowHeight = `${100 / aboutItems.length}%`;
-
+  const lg = 12 / items.length;
   return (
-    <Grid container sx={{ position: 'relative', height: '100%' }}>
-      {aboutItems.map((item, index) => {
-        const inverse = index % 2 !== 0;
-        return (
-          <AboutItem rightImage={inverse} key={item.id} {...item} show={show} height={rowHeight} timeout={timeout} />
-        );
-      })}
-    </Grid>
+    <Container sx={{ position: 'relative', mt: -10 }}>
+      <Grid container spacing={2} height="30vh">
+        {items.map((item) => (
+          <Grid item lg={lg}>
+            <AboutCard {...item} />
+          </Grid>
+        ))}
+      </Grid>
+      <Typography variant="body1" mt={2}>
+        Работаем уже более 7 лет и за это время мы исправили все недочеты, встречающиеся на других аэролодках, смогли
+        учесть все пожелания наших клиентов, и сделали лучшую бюджетную лодку, но на этом не останавливаемся и всё
+        продолжаем работать над аэролодками что-бы они становились ещё лучше.
+      </Typography>
+    </Container>
   );
 };
 

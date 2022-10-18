@@ -25,20 +25,20 @@ const Home: FC = () => {
           background: theme.palette.primary.main,
         }}
       >
-        Абсолютная власть над проходимостью
+        Аэролодки с повышенной проходимостью
       </Typography>
       <Typography
-        variant="body1"
+        variant="h5"
         sx={{
-          mt: 1,
+          mt: theme.spacing(1),
           color: theme.palette.primary.contrastText,
           padding: theme.spacing(1),
           background: theme.palette.primary.main,
         }}
       >
-        Аэролодка полностью меняет ваше представление о проходимости. Снег, лед, вода – не имеет значения!
+        Снег, лед, вода – не имеет значения!
       </Typography>
-      <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }}>
+      <Button color="secondary" variant="contained" size="large" sx={{ mt: theme.spacing(1) }}>
         Заказать
       </Button>
     </Box>

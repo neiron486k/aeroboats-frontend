@@ -23,16 +23,16 @@ const sections: SectionProps[] = [
     title: 'О нас',
     component: About,
   },
-  {
-    key: SectionEnum.PRODUCTS,
-    title: 'Продукты',
-    component: Products,
-  },
-  {
-    key: SectionEnum.CONTACTS,
-    title: 'Контакты',
-    component: Contacts,
-  },
+  // {
+  //   key: SectionEnum.PRODUCTS,
+  //   title: 'Каталог',
+  //   component: Products,
+  // },
+  // {
+  //   key: SectionEnum.CONTACTS,
+  //   title: 'Контакты',
+  //   component: Contacts,
+  // },
 ];
 
 export default sections;

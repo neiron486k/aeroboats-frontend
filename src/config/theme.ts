@@ -7,9 +7,9 @@ const setupTheme = () =>
     },
     palette: {
       primary: {
-        light: '#5e92f3',
-        main: '#1565c0',
-        dark: '#003c8f',
+        light: '#484848',
+        main: '#212121',
+        dark: '#000000',
         contrastText: '#fff',
       },
       secondary: {

@@ -1,7 +1,19 @@
-import { AppBar, Box, Button, Container, Link, Toolbar, Typography, useScrollTrigger, useTheme } from '@mui/material';
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Link,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
+  useTheme,
+} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { FC } from 'react';
 
+import logo from '../assets/images/logo.png';
 import Burger from './Navigation/Burger';
 import Menu from './Navigation/Menu';
 
@@ -20,16 +32,24 @@ const Header: FC = () => {
     <AppBar elevation={elevation} position={position} sx={{ background: '#fff', color: '#000' }}>
       <Container>
         <Toolbar>
-          <Typography sx={{ flexGrow: 1 }} variant="h4">
-            Aero Glisser
+          <Avatar src={logo} />
+          <Typography sx={{ flexGrow: 1, ml: 1 }} variant="h4">
+            AeroGlisser
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Link href="tel:+79110388737" color="inherit" underline="none">
-              <Button size="large">+79110388737</Button>
-            </Link>
-            <Button>Заказать звонок</Button>
-          </Box>
-          {matches ? <Menu /> : <Burger />}
+          <Link href="tel: +79110388737" underline="none" variant="body1">
+            +79110388737
+          </Link>
+          <Link
+            href="mailto: info@aeroglissers.ru"
+            underline="none"
+            variant="body1"
+            sx={{
+              ml: 1,
+              mr: 2,
+            }}
+          >
+            info@aeroglissers.ru
+          </Link>
         </Toolbar>
       </Container>
     </AppBar>
