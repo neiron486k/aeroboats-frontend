@@ -1,6 +1,7 @@
-import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Paper, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
+import Title from '../../../../components/Title';
 import AboutCard from './AboutCard';
 
 const items = [
@@ -28,15 +29,17 @@ const items = [
 
 const About: FC = () => {
   const lg = 12 / items.length;
+
   return (
     <Container sx={{ position: 'relative', mt: -10 }}>
-      <Grid container spacing={2} height="30vh">
+      <Grid container spacing={2} height="150px">
         {items.map((item) => (
           <Grid item lg={lg}>
             <AboutCard {...item} />
           </Grid>
         ))}
       </Grid>
+      <Title text="О нас" />
       <Typography variant="body1" mt={2}>
         Работаем уже более 7 лет и за это время мы исправили все недочеты, встречающиеся на других аэролодках, смогли
         учесть все пожелания наших клиентов, и сделали лучшую бюджетную лодку, но на этом не останавливаемся и всё

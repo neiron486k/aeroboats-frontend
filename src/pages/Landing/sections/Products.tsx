@@ -1,7 +1,8 @@
-import { ImageList, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 
 import Product from '../../../components/Product/Product';
+import Title from '../../../components/Title';
 import { useGetProductsQuery } from '../../../services/product';
 
 const Products = () => {
@@ -11,12 +12,21 @@ const Products = () => {
   const { data: products, isSuccess } = useGetProductsQuery(pageSize);
 
   return (
-    <ImageList sx={{ height: '100%', background: '#000' }} cols={pageSize / 2} gap={1}>
-      {isSuccess &&
-        products.results.map((product) => {
-          return <Product key={product.id} {...product} />;
-        })}
-    </ImageList>
+    <Container>
+      <Title text="Модели и комплектации" />
+      <Grid container spacing={2}>
+        {isSuccess &&
+          products.results.map((product) => {
+            const image = product.media.filter((item) => item.is_cover)[0] || '';
+
+            return (
+              <Grid item sm={4}>
+                <Product name={product.name} price={product.price} image={image.path} />
+              </Grid>
+            );
+          })}
+      </Grid>
+    </Container>
   );
 };
 

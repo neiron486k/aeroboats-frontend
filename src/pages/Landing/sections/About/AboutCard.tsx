@@ -8,8 +8,8 @@ interface AboutCardProps {
 }
 
 const AboutCard: FC<AboutCardProps> = ({ image, title, text }) => {
-  const [hower, setHover] = useState<boolean>(false);
-  const height = hower ? '100%' : '0%';
+  const [hover, setHover] = useState<boolean>(false);
+  const height = hover ? '100%' : '0%';
 
   return (
     <Box

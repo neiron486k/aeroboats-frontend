@@ -23,11 +23,11 @@ const sections: SectionProps[] = [
     title: 'О нас',
     component: About,
   },
-  // {
-  //   key: SectionEnum.PRODUCTS,
-  //   title: 'Каталог',
-  //   component: Products,
-  // },
+  {
+    key: SectionEnum.PRODUCTS,
+    title: 'Каталог',
+    component: Products,
+  },
   // {
   //   key: SectionEnum.CONTACTS,
   //   title: 'Контакты',
