@@ -1,25 +1,9 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Link,
-  Toolbar,
-  Typography,
-  useScrollTrigger,
-  useTheme,
-} from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { AppBar, Avatar, Container, Link, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import React, { FC } from 'react';
 
 import logo from '../assets/images/logo.png';
-import Burger from './Navigation/Burger';
-import Menu from './Navigation/Menu';
 
 const Header: FC = () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,

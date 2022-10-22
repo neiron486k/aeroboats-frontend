@@ -28,11 +28,11 @@ const sections: SectionProps[] = [
     title: 'Каталог',
     component: Products,
   },
-  // {
-  //   key: SectionEnum.CONTACTS,
-  //   title: 'Контакты',
-  //   component: Contacts,
-  // },
+  {
+    key: SectionEnum.CONTACTS,
+    title: 'Контакты',
+    component: Contacts,
+  },
 ];
 
 export default sections;

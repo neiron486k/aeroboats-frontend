@@ -6,21 +6,25 @@ import AboutCard from './AboutCard';
 
 const items = [
   {
+    key: 'developing',
     image: 'https://api.lorem.space/image/movie?w=150&h=100',
     title: 'Производство',
     text: 'Конструируем высококачественную продукцию на собственном производстве.',
   },
   {
+    key: 'consultation',
     image: 'https://api.lorem.space/image/game?w=150&h=100',
     title: 'Консультация',
-    text: 'Готовы проконсультировать по любым товарным вопросам и помочь сделать выбор.',
+    text: 'Готовы проконсультировать и помочь сделать выбор.',
   },
   {
+    key: 'support',
     image: 'https://api.lorem.space/image/book?w=150&h=100',
     title: 'Сервис',
     text: 'Оказываем сервисные услуги.',
   },
   {
+    key: 'guarantee',
     image: 'https://api.lorem.space/image/book?w=150&h=100',
     title: 'Гарантия',
     text: 'Предоставляем гарантийное обслуживание и ремонт',
@@ -32,9 +36,9 @@ const About: FC = () => {
 
   return (
     <Container sx={{ position: 'relative', mt: -10 }}>
-      <Grid container spacing={2} height="150px">
+      <Grid container spacing={1} height="150px">
         {items.map((item) => (
-          <Grid item lg={lg}>
+          <Grid key={item.key} item lg={lg}>
             <AboutCard {...item} />
           </Grid>
         ))}
