@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC, useState } from 'react';
 
 interface AboutCardProps {
@@ -17,7 +17,7 @@ const AboutCard: FC<AboutCardProps> = ({ image, title, text }) => {
       onMouseLeave={() => setHover(false)}
       sx={{
         height: '100%',
-        border: 2,
+        border: 1,
         borderColor: 'primary.main',
         background: `url(${image}) center center/cover no-repeat`,
         position: 'relative',
@@ -47,7 +47,7 @@ const AboutCard: FC<AboutCardProps> = ({ image, title, text }) => {
           height: `${height}`,
         }}
       >
-        <Typography variant="body2" color="#fff" p={2}>
+        <Typography variant="body2" color="primary.contrastText" p={2}>
           {text}
         </Typography>
       </Box>

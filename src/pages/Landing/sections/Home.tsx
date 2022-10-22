@@ -1,11 +1,9 @@
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 import jumbo from '../../../assets/images/jumbo.jpg';
 
 const Home: FC = () => {
-  const theme = useTheme();
-
   return (
     <Box
       sx={{
@@ -20,9 +18,9 @@ const Home: FC = () => {
       <Typography
         variant="h3"
         sx={{
-          color: theme.palette.primary.contrastText,
-          padding: theme.spacing(1),
-          background: theme.palette.primary.main,
+          color: 'primary.contrastText',
+          padding: 1,
+          background: (theme) => theme.palette.primary.main,
         }}
       >
         Аэролодки с повышенной проходимостью
@@ -30,15 +28,15 @@ const Home: FC = () => {
       <Typography
         variant="h5"
         sx={{
-          mt: theme.spacing(1),
-          color: theme.palette.primary.contrastText,
-          padding: theme.spacing(1),
-          background: theme.palette.primary.main,
+          mt: 1,
+          color: 'primary.contrastText',
+          padding: 1,
+          background: (theme) => theme.palette.primary.main,
         }}
       >
         Снег, лед, вода – не имеет значения!
       </Typography>
-      <Button color="secondary" variant="contained" size="large" sx={{ mt: theme.spacing(1) }}>
+      <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }}>
         Заказать
       </Button>
     </Box>

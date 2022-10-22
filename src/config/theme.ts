@@ -13,9 +13,9 @@ const setupTheme = () =>
         contrastText: '#fff',
       },
       secondary: {
-        light: '#99d066',
-        main: '#689f38',
-        dark: '#387002',
+        light: '#2e7d32',
+        main: '#2e7d32',
+        dark: '#005005',
         contrastText: '#fff',
       },
     },

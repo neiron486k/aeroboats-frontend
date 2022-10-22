@@ -1,4 +1,4 @@
-import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 
 import Product from '../../../components/Product/Product';
@@ -14,7 +14,7 @@ const Products = () => {
   return (
     <Container>
       <Title text="Модели и комплектации" />
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {isSuccess &&
           products.results.map((product) => {
             const image = product.media.filter((item) => item.is_cover)[0] || '';
