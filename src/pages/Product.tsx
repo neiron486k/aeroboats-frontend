@@ -2,10 +2,10 @@ import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ProductProps from '../interfaces/ProductProps';
+import ProductInterface from '../contracts/ProductInterface';
 import { useGetProductQuery } from '../services/product';
 
-const productInner = (product: ProductProps) => {
+const productInner = (product: ProductInterface) => {
   return (
     <>
       <Typography variant="h2">{product.name}</Typography>
