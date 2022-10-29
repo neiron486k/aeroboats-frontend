@@ -13,10 +13,12 @@ const Product: FC<ProductProps> = ({ name, price, image }) => {
       sx={{
         position: 'relative',
         height: '200px',
+        transition: '0.3s',
         background: `url(${image}) center center/cover no-repeat`,
         '&:hover': {
           filter: 'brightness(0.9)',
           cursor: 'pointer',
+          transform: 'scale(1.01,1.01)',
         },
       }}
     >
