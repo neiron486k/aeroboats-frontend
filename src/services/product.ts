@@ -11,7 +11,10 @@ export const productsApi = createApi({
     getProducts: builder.query<ListResponse<ProductProps>, number>({
       query: (page) => `/products/?page_size=${page}`,
     }),
+    getProduct: builder.query<ProductProps, number>({
+      query: (id) => `/products/${id}/`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useGetProductQuery } = productsApi;

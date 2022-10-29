@@ -1,5 +1,6 @@
 import { Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Product from '../../../components/Product/Product';
 import Title from '../../../components/Title';
@@ -21,6 +22,7 @@ const Products = () => {
             const image = product.media.filter((item) => item.is_cover)[0] || '';
             const itemsCount = products.results.length;
             const appendix = products.results.length % 3;
+
             if (index === itemsCount - appendix && appendix > 1) {
               cellCount = 6;
             } else if (index === itemsCount - appendix && appendix === 1) {
@@ -29,7 +31,9 @@ const Products = () => {
 
             return (
               <Grid item key={product.id} xs={12} sm={cellCount}>
-                <Product name={product.name} price={product.price} image={image.path} />
+                <Link to={`/products/${product.id}`}>
+                  <Product name={product.name} price={product.price} image={image.path} />
+                </Link>
               </Grid>
             );
           })}
