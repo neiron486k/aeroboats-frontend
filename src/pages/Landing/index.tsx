@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 import Header from '../../components/Header';
 import Section from '../../components/Section';
-import sections from '../../routes/sections';
+import sections from '../../config/sections';
 
 const Landing: FC = () => {
   return (

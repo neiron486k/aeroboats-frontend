@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 
 import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import sections from '../../routes/sections';
+import sections from '../../config/sections';
 import { setSection } from '../../store/reducers/ActionCreators';
 import scrollToSection from '../../utils/scrollToSection';
 import BurgerItem from './BurgerItem';
