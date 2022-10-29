@@ -1,8 +1,8 @@
 import React from 'react';
 
+import sections from '../../config/sections';
 import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import sections from '../../config/sections';
 import { setSection } from '../../store/reducers/ActionCreators';
 import scrollToSection from '../../utils/scrollToSection';
 import MenuItem from './MenuItem';

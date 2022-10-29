@@ -2,9 +2,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Modal, Slide } from '@mui/material';
 import React, { FC, useState } from 'react';
 
+import sections from '../../config/sections';
 import SectionEnum from '../../enums/SectionEnum';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import sections from '../../config/sections';
 import { setSection } from '../../store/reducers/ActionCreators';
 import scrollToSection from '../../utils/scrollToSection';
 import BurgerItem from './BurgerItem';
