@@ -35,8 +35,8 @@ const About: FC = () => {
   const lg = 12 / items.length;
 
   return (
-    <Container sx={{ position: 'relative', mt: -10 }}>
-      <Grid container spacing={1} height="150px">
+    <Container sx={{ position: 'relative', mt: -9 }}>
+      <Grid container spacing={1} height="15vh">
         {items.map((item) => (
           <Grid key={item.key} item lg={lg}>
             <AboutCard {...item} />

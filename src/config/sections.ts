@@ -2,7 +2,7 @@ import React from 'react';
 
 import SectionEnum from '../enums/SectionEnum';
 import About from '../pages/Landing/sections/About/About';
-import Contacts from '../pages/Landing/sections/Contacts';
+import Contacts from '../pages/Landing/sections/Contacts/Contacts';
 import Home from '../pages/Landing/sections/Home';
 import Products from '../pages/Landing/sections/Products';
 
