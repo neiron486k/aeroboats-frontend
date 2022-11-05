@@ -8,7 +8,13 @@ const position: LatLngExpression = [60.026297, 32.304855];
 
 const Map: FC = () => {
   return (
-    <MapContainer center={position} zoom={14} scrollWheelZoom={false} style={{ height: '40vh' }}>
+    <MapContainer
+      center={position}
+      zoom={14}
+      scrollWheelZoom={false}
+      style={{ height: '40vh' }}
+      attributionControl={false}
+    >
       <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker position={position}>
         <Popup>Производство аэролодок</Popup>

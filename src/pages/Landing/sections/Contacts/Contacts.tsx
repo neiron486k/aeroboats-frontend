@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { AppBar, Box, Container, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 import Title from '../../../../components/Title';
@@ -9,7 +9,14 @@ const Contacts: FC = () => {
     <Box>
       <Title text="Наши контакты" />
       <Map />
-      <Typography>copyright</Typography>
+      <AppBar position="relative" color="secondary">
+        <Container>
+          <Typography>Телефоны</Typography>
+          <Typography>+79046001624</Typography>
+          <Typography>+79046001135</Typography>
+          <Typography>+79110388737</Typography>
+        </Container>
+      </AppBar>
     </Box>
   );
 };
