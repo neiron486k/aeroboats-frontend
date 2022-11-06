@@ -34,7 +34,7 @@ const Header: FC = () => {
           <Typography sx={{ flexGrow: 1, ml: 1 }} variant={matches ? 'h6' : 'h4'}>
             AeroGlissers
           </Typography>
-          <Phone value="+79213594494" sx={{ mr: matches ? 0 : 1 }} />
+          <Phone value="+79046001624" sx={{ mr: matches ? 0 : 1 }} />
           {!matches && <Email value="info@aeroglissers.ru" />}
         </Toolbar>
       </Container>
