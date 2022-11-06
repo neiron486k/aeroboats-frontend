@@ -1,17 +1,58 @@
-import { Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React, { FC } from 'react';
 
 import Title from '../../../../components/Title';
+import Card, { CardPosition } from './Card';
+
+const cards = [
+  {
+    key: 'own_production',
+    image: 'https://picsum.photos/100/150',
+    title: 'Свое производство',
+    description:
+      'Работаем более 10 лет на своем производстве,' +
+      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+  },
+  {
+    key: 'own_production',
+    image: 'https://picsum.photos/100/150',
+    title: 'Свое производство',
+    description:
+      'Работаем более 10 лет на своем производстве,' +
+      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+  },
+  {
+    key: 'own_production',
+    image: 'https://picsum.photos/100/150',
+    title: 'Свое производство',
+    description:
+      'Работаем более 10 лет на своем производстве,' +
+      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+  },
+  {
+    key: 'own_production',
+    image: 'https://picsum.photos/100/150',
+    title: 'Свое производство',
+    description:
+      'Работаем более 10 лет на своем производстве,' +
+      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+  },
+];
 
 const About: FC = () => {
   return (
     <Container sx={{ pt: 10, pb: 10 }}>
       <Title text="О нас" />
-      <Typography variant="body1" mt={2}>
-        Работаем уже более 7 лет и за это время мы исправили все недочеты, встречающиеся на других аэролодках, смогли
-        учесть все пожелания наших клиентов, и сделали лучшую бюджетную лодку, но на этом не останавливаемся и всё
-        продолжаем работать над аэролодками что-бы они становились ещё лучше.
-      </Typography>
+      {cards.map((item, index) => {
+        const position = index % 2 === 0 ? CardPosition.Left : CardPosition.Right;
+        const paddingBottom = index === cards.length ? 0 : 2;
+
+        return (
+          <Box sx={{ pb: paddingBottom }}>
+            <Card {...item} position={position} />
+          </Box>
+        );
+      })}
     </Container>
   );
 };

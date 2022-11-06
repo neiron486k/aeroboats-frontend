@@ -7,7 +7,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ text }) => {
   return (
-    <Typography color="primary" variant="h4" sx={{ mb: 4, textAlign: 'center' }}>
+    <Typography color="primary" variant="h3" sx={{ mb: 4, textAlign: 'center' }}>
       {text}
     </Typography>
   );

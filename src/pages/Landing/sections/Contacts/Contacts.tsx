@@ -9,14 +9,6 @@ const Contacts: FC = () => {
     <Box sx={{ pt: 10 }}>
       <Title text="Наши контакты" />
       <Map />
-      <AppBar position="relative" color="secondary">
-        <Container>
-          <Typography>Телефоны</Typography>
-          <Typography>+79046001624</Typography>
-          <Typography>+79046001135</Typography>
-          <Typography>+79110388737</Typography>
-        </Container>
-      </AppBar>
     </Box>
   );
 };

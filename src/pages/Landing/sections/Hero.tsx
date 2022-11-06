@@ -16,7 +16,7 @@ const Hero: FC = () => {
       }}
     >
       <Typography
-        variant="h3"
+        variant="h2"
         sx={{
           color: 'primary.contrastText',
           padding: 1,
