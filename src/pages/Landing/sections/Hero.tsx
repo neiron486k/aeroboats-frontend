@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 import jumbo from '../../../assets/images/jumbo.jpg';
 
-const Home: FC = () => {
+const Hero: FC = () => {
   return (
     <Box
       sx={{
@@ -43,4 +43,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default Hero;

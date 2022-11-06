@@ -1,32 +1,29 @@
 import { Box } from '@mui/material';
-import React, { FC, useEffect } from 'react';
-import { useIntersectionObserver } from 'react-intersection-observer-hook';
-import { useDispatch } from 'react-redux';
-
-import SectionEnum from '../enums/SectionEnum';
-import { setSection } from '../store/reducers/ActionCreators';
+import React, { FC } from 'react';
 
 interface SectionProps {
-  id: SectionEnum;
   children: React.ReactNode;
+  background?: string;
 }
 
-const Section: FC<SectionProps> = ({ id, children }) => {
-  const [ref, { entry }] = useIntersectionObserver({ threshold: 0.7 });
-  const isVisible = entry && entry.isIntersecting;
-  const dispatch = useDispatch();
+const defaultProps = {
+  background: '#fff',
+};
 
-  useEffect(() => {
-    if (isVisible) {
-      dispatch(setSection(id));
-    }
-  }, [isVisible, id, dispatch]);
-
+const Section: FC<SectionProps> = ({ children, background = '' }) => {
   return (
-    <Box id={id} ref={ref}>
+    <Box
+      sx={{
+        pt: 10,
+        pb: 10,
+        background: `${background}`,
+      }}
+    >
       {children}
     </Box>
   );
 };
+
+Section.defaultProps = defaultProps;
 
 export default Section;

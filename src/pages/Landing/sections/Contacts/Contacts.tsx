@@ -6,7 +6,7 @@ import Map from './Map';
 
 const Contacts: FC = () => {
   return (
-    <Box>
+    <Box sx={{ pt: 10 }}>
       <Title text="Наши контакты" />
       <Map />
       <AppBar position="relative" color="secondary">

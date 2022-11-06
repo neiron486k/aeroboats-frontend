@@ -2,18 +2,19 @@ import { Box } from '@mui/material';
 import React, { FC } from 'react';
 
 import Header from '../../components/Header';
-import Section from '../../components/Section';
-import sections from '../../config/sections';
+import About from './sections/About/About';
+import Contacts from './sections/Contacts/Contacts';
+import Hero from './sections/Hero';
+import Products from './sections/Products';
 
 const Landing: FC = () => {
   return (
     <Box>
       <Header />
-      {sections.map((item) => (
-        <Section id={item.key} key={item.key}>
-          <item.component />
-        </Section>
-      ))}
+      <Hero />
+      <About />
+      <Products />
+      <Contacts />
     </Box>
   );
 };

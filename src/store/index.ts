@@ -1,10 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { productsApi } from '../services/product';
-import LandingSlice from './reducers/LandingSlice';
 
 const rootReducer = combineReducers({
-  landing: LandingSlice,
   [productsApi.reducerPath]: productsApi.reducer,
 });
 
