@@ -10,29 +10,25 @@ const cards = [
     image: 'https://picsum.photos/100/150',
     title: 'Свое производство',
     description:
-      'Работаем более 10 лет на своем производстве,' +
-      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+      'Работаем более 10 лет на своем производстве! ' +
+      'За это время успели исправиль все недочеты, встречающиеся в других аэролодках.',
   },
   {
-    key: 'own_production',
+    key: 'service',
     image: 'https://picsum.photos/100/150',
-    title: 'Свое производство',
-    description:
-      'Работаем более 10 лет на своем производстве,' +
-      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+    title: 'Сервис',
+    description: 'Оказываем сервисные услуги любой сложности.',
   },
   {
-    key: 'own_production',
+    key: 'guarantee',
     image: 'https://picsum.photos/100/150',
-    title: 'Свое производство',
-    description:
-      'Работаем более 10 лет на своем производстве,' +
-      ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
+    title: 'Гарантия',
+    description: 'Гарантируем качетсво нашей продукции и предоставяем гарантийный ремонт в случае неисправности.',
   },
   {
-    key: 'own_production',
+    key: 'support',
     image: 'https://picsum.photos/100/150',
-    title: 'Свое производство',
+    title: 'Поддержка',
     description:
       'Работаем более 10 лет на своем производстве,' +
       ' где упели исправиль все недочеты, встречающиеся в других аэролодках',
@@ -45,10 +41,10 @@ const About: FC = () => {
       <Title text="О нас" />
       {cards.map((item, index) => {
         const position = index % 2 === 0 ? CardPosition.Left : CardPosition.Right;
-        const paddingBottom = index === cards.length ? 0 : 2;
+        const paddingBottom = index === cards.length ? 0 : 1;
 
         return (
-          <Box sx={{ pb: paddingBottom }}>
+          <Box sx={{ pb: paddingBottom }} key={item.key}>
             <Card {...item} position={position} />
           </Box>
         );

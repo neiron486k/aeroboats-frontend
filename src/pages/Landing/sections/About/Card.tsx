@@ -18,11 +18,11 @@ const Card: FC<CardProps> = ({ image, title, description, position }) => {
     <Grid container>
       <Grid
         item
-        sm={5}
+        sm={6}
         sx={{ background: `url(${image}) center center / cover no-repeat`, height: '20vh' }}
         order={position === CardPosition.Left ? 1 : 2}
       />
-      <Grid item sm={7} order={position === CardPosition.Left ? 2 : 1} sx={{ pl: 2, pr: 2 }}>
+      <Grid item sm={6} order={position === CardPosition.Left ? 2 : 1} sx={{ pl: 2, pr: 2 }}>
         <Typography variant="h5" align={position} pb={1}>
           {title}
         </Typography>
