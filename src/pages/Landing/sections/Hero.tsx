@@ -1,9 +1,12 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 
 import jumbo from '../../../assets/images/jumbo.jpg';
 
 const Hero: FC = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box
       sx={{
@@ -19,19 +22,19 @@ const Hero: FC = () => {
         variant="h2"
         sx={{
           color: 'primary.contrastText',
-          padding: 1,
-          background: (theme) => theme.palette.primary.main,
+          p: 1,
+          background: theme.palette.primary.main,
+          fontSize: matches ? '2rem' : '3rem',
         }}
       >
         Аэролодки с повышенной проходимостью
       </Typography>
       <Typography
-        variant="h5"
         sx={{
           mt: 1,
           color: 'primary.contrastText',
-          padding: 1,
-          background: (theme) => theme.palette.primary.main,
+          p: 1,
+          background: theme.palette.primary.main,
         }}
       >
         Снег, лед, вода – не имеет значения!

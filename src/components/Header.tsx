@@ -1,7 +1,18 @@
-import { AppBar, Avatar, Container, Link, Toolbar, Typography, useScrollTrigger } from '@mui/material';
+import {
+  AppBar,
+  Avatar,
+  Container,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useScrollTrigger,
+  useTheme,
+} from '@mui/material';
 import React, { FC } from 'react';
 
 import logo from '../assets/images/logo.png';
+import Email from './Email';
+import Phone from './Phone';
 
 const Header: FC = () => {
   const trigger = useScrollTrigger({
@@ -12,28 +23,19 @@ const Header: FC = () => {
   const position = trigger ? 'fixed' : 'relative';
   const elevation = trigger ? 2 : 0;
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <AppBar elevation={elevation} position={position} sx={{ background: '#fff', color: '#000' }}>
       <Container>
         <Toolbar>
           <Avatar src={logo} />
-          <Typography sx={{ flexGrow: 1, ml: 1 }} variant="h4">
-            AeroGlisser
+          <Typography sx={{ flexGrow: 1, ml: 1 }} variant={matches ? 'h6' : 'h4'}>
+            AeroGlissers
           </Typography>
-          <Link href="tel: +79110388737" underline="none" variant="body1">
-            +79110388737
-          </Link>
-          <Link
-            href="mailto: info@aeroglissers.ru"
-            underline="none"
-            variant="body1"
-            sx={{
-              ml: 1,
-              mr: 2,
-            }}
-          >
-            info@aeroglissers.ru
-          </Link>
+          <Phone value="+79213594494" sx={{ mr: matches ? 0 : 1 }} />
+          {!matches && <Email value="info@aeroglissers.ru" />}
         </Toolbar>
       </Container>
     </AppBar>
