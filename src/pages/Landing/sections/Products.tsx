@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Product from '../../../components/Product/Product';
-import Section from '../../../components/Section';
 import Title from '../../../components/Title';
 import { useGetProductsQuery } from '../../../services/product';
 
@@ -15,7 +14,13 @@ const Products = () => {
   let cellCount = 4;
 
   return (
-    <Box sx={{ pt: 10, pb: 10, background: '#f1f1f1' }}>
+    <Box
+      sx={{
+        pt: 10,
+        pb: 10,
+        background: `linear-gradient(to top, transparent, #111), #000}`,
+      }}
+    >
       <Container>
         <Title text="Модели и комплектации" />
         <Grid container spacing={1}>

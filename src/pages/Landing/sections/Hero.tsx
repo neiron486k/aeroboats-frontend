@@ -15,26 +15,25 @@ const Hero: FC = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        background: `url(${jumbo}) center center/cover no-repeat`,
+        background: `linear-gradient(to bottom, transparent, #111), url(${jumbo}) center center/cover no-repeat`,
       }}
     >
       <Typography
         variant="h2"
         sx={{
           color: 'primary.contrastText',
-          p: 1,
-          background: theme.palette.primary.main,
+          textTransform: 'uppercase',
+          fontWeight: 500,
           fontSize: matches ? '2rem' : '3rem',
         }}
       >
         Аэролодки с повышенной проходимостью
       </Typography>
       <Typography
+        variant="h6"
         sx={{
-          mt: 1,
           color: 'primary.contrastText',
           p: 1,
-          background: theme.palette.primary.main,
         }}
       >
         Снег, лед, вода – не имеет значения!

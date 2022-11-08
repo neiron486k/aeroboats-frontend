@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 interface TitleProps {
@@ -7,9 +7,18 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ text }) => {
   return (
-    <Typography color="text.primary" sx={{ mb: 4, textAlign: 'center', fontSize: '2rem', textTransform: 'uppercase' }}>
-      {text}
-    </Typography>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Typography
+        color="common.white"
+        sx={{
+          mb: 4,
+          fontSize: '2rem',
+          position: 'relative',
+        }}
+      >
+        {text}
+      </Typography>
+    </Box>
   );
 };
 

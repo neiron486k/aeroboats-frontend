@@ -29,7 +29,7 @@ const Card: FC<CardProps> = ({ image, title, description, position }) => {
         order={imageOrder}
       />
       <Grid item sm={6} xs={12} order={textOrder} sx={{ pl: 2, pr: 2 }}>
-        <Typography variant="h5" align={position} pb={1}>
+        <Typography variant="h5" align={position} gutterBottom>
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" align={position}>
