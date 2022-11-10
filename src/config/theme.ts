@@ -1,9 +1,10 @@
+import '@fontsource/play';
 import { createTheme } from '@mui/material';
 
 const setupTheme = () =>
   createTheme({
     typography: {
-      fontFamily: ['Roboto', 'Arial', 'sans-serif'].join(','),
+      fontFamily: ['Play', 'Roboto', 'Arial', 'sans-serif'].join(','),
     },
     palette: {
       primary: {

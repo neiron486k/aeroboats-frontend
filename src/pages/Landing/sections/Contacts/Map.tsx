@@ -12,7 +12,7 @@ const Map: FC = () => {
       center={position}
       zoom={14}
       scrollWheelZoom={false}
-      style={{ height: '40vh' }}
+      style={{ height: '100%' }}
       attributionControl={false}
     >
       <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
