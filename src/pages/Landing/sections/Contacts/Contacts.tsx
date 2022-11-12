@@ -1,7 +1,9 @@
-import { Box, Container, Paper } from '@mui/material';
+import { Box, Container, Paper, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
+import Email from '../../../../components/Email';
 import Phone from '../../../../components/Phone';
+import Title from '../../../../components/Title';
 import Map from './Map';
 
 const Contacts: FC = () => {
@@ -25,8 +27,11 @@ const Contacts: FC = () => {
               flexDirection: 'column',
             }}
           >
+            <Typography gutterBottom variant="h6" component="div" align="center">
+              Контакты
+            </Typography>
             <Phone value="+79046001624" />
-            <Phone value="+79046001624" />
+            <Email value="info@aeroglissers.ru" />
           </Paper>
         </Box>
       </Container>
