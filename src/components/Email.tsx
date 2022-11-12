@@ -1,4 +1,5 @@
-import { Link, Typography } from '@mui/material';
+import EmailIcon from '@mui/icons-material/EmailOutlined';
+import { Button, Link } from '@mui/material';
 import React, { FC } from 'react';
 
 interface EmailProps {
@@ -8,7 +9,9 @@ interface EmailProps {
 const Email: FC<EmailProps> = ({ value }) => {
   return (
     <Link href={`mailto: ${value}`} underline="none">
-      {value}
+      <Button size="large" startIcon={<EmailIcon />} sx={{ textTransform: 'lowercase' }}>
+        {value}
+      </Button>
     </Link>
   );
 };

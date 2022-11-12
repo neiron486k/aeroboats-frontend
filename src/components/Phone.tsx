@@ -1,4 +1,5 @@
-import { Link, SxProps, styled } from '@mui/material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import { Button, Link, SxProps, styled } from '@mui/material';
 import React from 'react';
 
 interface PhoneProps {
@@ -9,7 +10,9 @@ interface PhoneProps {
 export default styled((props: PhoneProps) => {
   return (
     <Link href={`tel: ${props.value}`} underline="none" {...props}>
-      {props.value}
+      <Button size="large" startIcon={<PhoneIcon />}>
+        {props.value}
+      </Button>
     </Link>
   );
 })();
