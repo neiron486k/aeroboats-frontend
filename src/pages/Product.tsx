@@ -33,7 +33,7 @@ const productInner = (product: ProductInterface) => {
         </Typography>
       </Grid>
       <Grid item sm={7} sx={{ p: 5 }}>
-        <Title text={product.name} />
+        <Title color="#000">{product.name}</Title>
         <Typography variant="body1">{product.description}</Typography>
       </Grid>
     </Grid>

@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import React, { FC } from 'react';
 
-import logo from '../assets/images/logo.png';
+import logo from '../assets/landing/images/logo.png';
 import Email from './Email';
 import Phone from './Phone';
 

@@ -18,11 +18,10 @@ const Products = () => {
       sx={{
         pt: 10,
         pb: 10,
-        background: `linear-gradient(to top, transparent, #111), #000}`,
       }}
     >
       <Container>
-        <Title text="Модели и комплектации" />
+        <Title>Модели и комплектации</Title>
         <Grid container spacing={1}>
           {isSuccess &&
             products.results.map((product, index) => {

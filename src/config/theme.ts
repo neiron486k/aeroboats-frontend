@@ -26,6 +26,7 @@ const setupTheme = () =>
           body: {
             overflowX: 'hidden',
             overflowY: 'scroll',
+            background: '#000',
           },
         },
       },

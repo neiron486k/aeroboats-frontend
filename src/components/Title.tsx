@@ -1,25 +1,12 @@
-import { Box, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import { styled } from '@mui/material';
 
-interface TitleProps {
-  text: string;
-}
-
-const Title: FC<TitleProps> = ({ text }) => {
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Typography
-        color="common.white"
-        sx={{
-          mb: 4,
-          fontSize: '2rem',
-          position: 'relative',
-        }}
-      >
-        {text}
-      </Typography>
-    </Box>
-  );
-};
+const Title = styled('div')(({ theme }) => ({
+  color: 'white',
+  paddingBottom: theme.spacing(4),
+  width: '100%',
+  textAlign: 'center',
+  fontSize: '2rem',
+  position: 'relative',
+}));
 
 export default Title;

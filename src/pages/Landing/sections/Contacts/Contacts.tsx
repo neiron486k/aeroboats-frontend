@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 
 import Email from '../../../../components/Email';
 import Phone from '../../../../components/Phone';
-import Title from '../../../../components/Title';
 import Map from './Map';
 
 const Contacts: FC = () => {

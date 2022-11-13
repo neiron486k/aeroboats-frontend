@@ -1,7 +1,7 @@
 import { Box, Button, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 
-import jumbo from '../../../assets/images/jumbo.jpg';
+import jumbo from '../../../assets/landing/images/jumbo.jpg';
 
 const Hero: FC = () => {
   const theme = useTheme();
