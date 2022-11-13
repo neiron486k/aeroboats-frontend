@@ -1,4 +1,5 @@
 import delivery from '../../../../assets/landing/images/benefits/delivery.svg';
+import security from '../../../../assets/landing/images/benefits/security.svg';
 import support from '../../../../assets/landing/images/benefits/support.svg';
 import BenefitInterface from './BenefitInterface';
 
@@ -19,7 +20,7 @@ const benefitItems: BenefitItemProps[] = [
   },
   {
     key: 3,
-    image: 'https://picsum.photos/id/237/200/300',
+    image: security,
     text: 'test test',
   },
   {
