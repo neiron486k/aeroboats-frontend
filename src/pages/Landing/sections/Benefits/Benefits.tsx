@@ -9,10 +9,10 @@ const Benefits: FC = () => {
   let cellCount = 3;
 
   return (
-    <Box sx={{ pt: 10, background: '#d6e9ec' }}>
+    <Box sx={{ pt: 10, pb: 10, background: '#d6e9ec' }}>
       <Container>
         <Title sx={{ color: '#000' }}>Наши преимущества</Title>
-        <Grid container>
+        <Grid container spacing={4}>
           {benefitItems.map((item, index) => {
             const itemsCount = benefitItems.length;
             const appendix = benefitItems.length % 4;
@@ -24,7 +24,7 @@ const Benefits: FC = () => {
             }
 
             return (
-              <Grid item height="30vh" sm={cellCount} key={item.key}>
+              <Grid item sm={cellCount} key={item.key}>
                 <Benefit {...item} />
               </Grid>
             );
