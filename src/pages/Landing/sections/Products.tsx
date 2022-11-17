@@ -11,7 +11,6 @@ const Products = () => {
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const pageSize = matches ? 4 : 10;
   const { data: products, isSuccess } = useGetProductsQuery(pageSize);
-  let cellCount = 4;
 
   return (
     <Box
@@ -22,27 +21,25 @@ const Products = () => {
     >
       <Container>
         <Title>Модели и комплектации</Title>
-        <Grid container spacing={1}>
-          {isSuccess &&
-            products.results.map((product, index) => {
-              const itemsCount = products.results.length;
-              const appendix = products.results.length % 3;
+        {isSuccess &&
+          products.results.map((product, index) => {
+            const end = products.results.length - 1 === index;
 
-              if (index === itemsCount - appendix && appendix > 1) {
-                cellCount = 6;
-              } else if (index === itemsCount - appendix && appendix === 1) {
-                cellCount = 12;
-              }
-
-              return (
-                <Grid item key={product.id} xs={12} sm={cellCount}>
-                  <Link to={`/products/${product.id}`}>
-                    <Product {...product} />
-                  </Link>
-                </Grid>
-              );
-            })}
-        </Grid>
+            return (
+              <Link key={product.id} to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+                <Box
+                  sx={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                    height: '40vh',
+                    marginBottom: end ? 0 : 10,
+                  }}
+                >
+                  <Product {...product} />
+                </Box>
+              </Link>
+            );
+          })}
       </Container>
     </Box>
   );

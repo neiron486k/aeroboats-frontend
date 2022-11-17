@@ -1,52 +1,27 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 interface ProductProps {
   name: string;
+  short_description: string;
   price: number;
   image: string;
 }
 
-const Product: FC<ProductProps> = ({ name, price, image }) => {
+const Product: FC<ProductProps> = ({ name, short_description, price, image }) => {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: '200px',
-        transition: '0.3s',
-        background: `url(${image}) center center/cover no-repeat`,
-        '&:hover': {
-          filter: 'brightness(0.9)',
-          transform: 'scale(1.01,1.01)',
-        },
-      }}
-    >
-      <Typography
-        variant="caption"
-        sx={{
-          position: 'absolute',
-          right: 0,
-          p: 1,
-          color: 'secondary.contrastText',
-          background: (theme) => theme.palette.secondary.main,
-        }}
-      >
-        {price}p
-      </Typography>
-      <Typography
-        variant="subtitle2"
-        sx={{
-          position: 'absolute',
-          left: 0,
-          bottom: 0,
-          p: 1,
-          color: 'secondary.contrastText',
-          background: (theme) => theme.palette.primary.main,
-        }}
-      >
-        {name}
-      </Typography>
-    </Box>
+    <Grid container columnSpacing={6} height="100%">
+      <Grid item sm={8} sx={{ background: `url(${image}) center center / cover no-repeat` }} />
+      <Grid item sm={4}>
+        <Paper sx={{ height: '100%', p: 2 }}>
+          <Typography gutterBottom variant="h6" component="div">
+            {name}
+          </Typography>
+          <Typography>От {price}p</Typography>
+          <Typography>{short_description}</Typography>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 
