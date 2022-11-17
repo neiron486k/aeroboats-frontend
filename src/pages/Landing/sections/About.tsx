@@ -5,7 +5,13 @@ import Title from '../../../components/Title';
 
 const About: FC = () => {
   return (
-    <Box sx={{ background: `linear-gradient(to top, transparent, #111), #000}` }}>
+    <Box
+      sx={{
+        pt: 10,
+        pb: 10,
+        background: `linear-gradient(to top, transparent, #111), #000}`,
+      }}
+    >
       <Container>
         <Title>Мы</Title>
         <Typography color="common.white" gutterBottom>

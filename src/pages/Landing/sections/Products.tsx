@@ -2,6 +2,7 @@ import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import water from '../../../assets/landing/images/products/water_background.jpeg';
 import Product from '../../../components/Product/Product';
 import Title from '../../../components/Title';
 import { useGetProductsQuery } from '../../../services/product';
@@ -17,13 +18,14 @@ const Products = () => {
       sx={{
         pt: 10,
         pb: 10,
+        background: `linear-gradient(to top, transparent, #000), url(${water}) center center/cover no-repeat`,
       }}
     >
       <Container>
         <Title>Модели и комплектации</Title>
         {isSuccess &&
           products.results.map((product, index) => {
-            const end = products.results.length - 1 === index;
+            const productsCount = products.results.length - 1;
 
             return (
               <Link key={product.id} to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
@@ -32,10 +34,10 @@ const Products = () => {
                     position: 'relative',
                     overflow: 'hidden',
                     height: '40vh',
-                    marginBottom: end ? 0 : 10,
+                    marginBottom: productsCount === index ? 0 : 10,
                   }}
                 >
-                  <Product {...product} />
+                  <Product {...product} alignImageLeft={index % 2 === 0} />
                 </Box>
               </Link>
             );

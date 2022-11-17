@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import Title from '../../../../components/Title';
+import WorkItemInterface from './WorkItemInterface';
 import workItems from './workItems';
 
 interface WorkItemProps {
@@ -41,8 +42,8 @@ const Works: FC = () => {
       <Container>
         <Title>Наши работы</Title>
         <Slider {...settings}>
-          {workItems.map((item) => {
-            return <WorkItem {...item} />;
+          {workItems.map((item: WorkItemInterface) => {
+            return <WorkItem key={item.id} {...item} />;
           })}
         </Slider>
       </Container>
