@@ -2,10 +2,10 @@ import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import water from '../../../assets/landing/images/products/water_background.jpeg';
-import Product from '../../../components/Product/Product';
-import Title from '../../../components/Title';
-import { useGetProductsQuery } from '../../../services/product';
+import water from '../../../../assets/landing/images/products/water_background.jpeg';
+import Title from '../../../../components/Title';
+import { useGetProductsQuery } from '../../../../services/product';
+import Product from './Product';
 
 const Products = () => {
   const theme = useTheme();

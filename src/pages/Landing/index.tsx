@@ -6,7 +6,7 @@ import About from './sections/About';
 import Benefits from './sections/Benefits/Benefits';
 import Contacts from './sections/Contacts/Contacts';
 import Hero from './sections/Hero';
-import Products from './sections/Products';
+import Products from './sections/Products/Products';
 import Works from './sections/Works/Works';
 
 const Landing: FC = () => {
