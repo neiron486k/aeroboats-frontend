@@ -1,18 +1,20 @@
 import PhoneIcon from '@mui/icons-material/Phone';
-import { Button, Link, SxProps, styled } from '@mui/material';
-import React from 'react';
+import { Button, Link, styled } from '@mui/material';
+import React, { FC } from 'react';
 
 interface PhoneProps {
   value: string;
-  sx?: SxProps;
 }
 
-export default styled((props: PhoneProps) => {
+const Phone: FC<PhoneProps> = (props) => {
+  const { value } = props;
   return (
-    <Link href={`tel: ${props.value}`} underline="none" {...props}>
+    <Link href={`mailto: ${value}`} underline="none" {...props}>
       <Button size="large" startIcon={<PhoneIcon />}>
-        {props.value}
+        {value}
       </Button>
     </Link>
   );
-})();
+};
+
+export default styled(Phone)({});
