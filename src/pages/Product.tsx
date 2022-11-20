@@ -34,9 +34,11 @@ const productInner = (product: ProductInterface) => {
       </Grid>
       <Grid item sm={7} sx={{ p: 5 }}>
         <Title>{product.name}</Title>
-        <Typography variant="body1" color="primary.contrastText">
-          {product.description}
-        </Typography>
+        <Typography
+          variant="body1"
+          color="primary.contrastText"
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        />
       </Grid>
     </Grid>
   );
