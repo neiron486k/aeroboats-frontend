@@ -1,6 +1,5 @@
-import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import water from '../../../../assets/landing/images/products/water_background.jpeg';
 import Title from '../../../../components/Title';
@@ -28,18 +27,14 @@ const Products = () => {
             const productsCount = products.results.length - 1;
 
             return (
-              <Link key={product.id} to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
-                <Box
-                  sx={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    height: '40vh',
-                    marginBottom: productsCount === index ? 0 : 10,
-                  }}
-                >
-                  <Product {...product} alignImageLeft={index % 2 === 0} />
-                </Box>
-              </Link>
+              <Box
+                key={product.id}
+                sx={{
+                  marginBottom: productsCount === index ? 0 : 10,
+                }}
+              >
+                <Product {...product} alignImageLeft={index % 2 === 0} />
+              </Box>
             );
           })}
       </Container>

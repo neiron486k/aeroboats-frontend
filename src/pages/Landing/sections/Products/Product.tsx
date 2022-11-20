@@ -1,38 +1,71 @@
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-interface ProductProps {
-  name: string;
-  short_description: string;
-  price: number;
-  image: string;
+import ProductInterface from '../../../../contracts/ProductInterface';
+
+interface ProductProps extends ProductInterface {
   alignImageLeft: boolean;
 }
 
-const Product: FC<ProductProps> = ({ name, short_description, price, image, alignImageLeft }) => {
+const Product: FC<ProductProps> = ({ id, name, short_description, price, image, alignImageLeft }) => {
+  let orderImage = alignImageLeft ? 1 : 2;
+  let orderContent = alignImageLeft ? 2 : 1;
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const buttonStyle = matches
+    ? {}
+    : {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        p: 4,
+      };
+
+  if (matches) {
+    orderImage = 1;
+    orderContent = 2;
+  }
+
   return (
     <Grid container height="100%">
-      <Grid item sm={8} order={alignImageLeft ? 1 : 2} pr={alignImageLeft ? 3 : 0}>
+      <Grid item md={8} sm={6} xs={12} order={orderImage}>
         <Box
           sx={{
             background: `url(${image}) center center / cover no-repeat`,
-            height: '100%',
+            height: matches ? '200px' : '350px',
           }}
         />
       </Grid>
-      <Grid item sm={4} order={alignImageLeft ? 2 : 1} pr={alignImageLeft ? 0 : 3}>
-        <Paper sx={{ height: '100%', p: 4, borderRadius: 0, position: 'relative' }}>
-          <Typography gutterBottom variant="h5" component="div" sx={{ textTransform: 'uppercase' }}>
-            {name}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="div" sx={{ color: '#083f8a', fontWeight: 700 }}>
-            {price} p
-          </Typography>
-          <Typography color="text.secondary">{short_description}</Typography>
-          <Button fullWidth variant="contained">
-            Подробнее
-          </Button>
-        </Paper>
+      <Grid
+        item
+        md={4}
+        sm={6}
+        xs={12}
+        order={orderContent}
+        sx={{
+          background: '#fff',
+          p: 4,
+          position: 'relative',
+        }}
+      >
+        <Typography gutterBottom variant="h5" component="div" sx={{ textTransform: 'uppercase' }}>
+          {name}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div" sx={{ color: '#083f8a', fontWeight: 700 }}>
+          {price} p
+        </Typography>
+        <Typography color="text.secondary" gutterBottom={matches} paragraph={matches}>
+          {short_description}
+        </Typography>
+        <Link to={`/products/${id}`}>
+          <Box sx={buttonStyle}>
+            <Button fullWidth variant="contained">
+              Подробнее
+            </Button>
+          </Box>
+        </Link>
       </Grid>
     </Grid>
   );
