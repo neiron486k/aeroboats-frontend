@@ -1,15 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { productsApi } from '../services/product';
+import { workApi } from '../services/work';
 
 const rootReducer = combineReducers({
   [productsApi.reducerPath]: productsApi.reducer,
+  [workApi.reducerPath]: workApi.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware, workApi.middleware),
   });
 };
 

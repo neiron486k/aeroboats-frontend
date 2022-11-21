@@ -30,7 +30,7 @@ const Products = () => {
               <Box
                 key={product.id}
                 sx={{
-                  marginBottom: productsCount === index ? 0 : 10,
+                  marginBottom: productsCount === index ? 0 : 5,
                 }}
               >
                 <Product {...product} alignImageLeft={index % 2 === 0} />
