@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -10,6 +10,8 @@ import Work from './Work';
 
 const Works: FC = () => {
   const { data, isSuccess } = useGetWorksQuery();
+  const theme = useTheme();
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
   const settings = {
     dots: false,
     infinite: true,
@@ -19,7 +21,12 @@ const Works: FC = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: 'linear',
+    arrows: !matchesSm,
   };
+
+  if (matchesSm) {
+    settings.slidesToShow = 1;
+  }
 
   return (
     <Box sx={{ pt: 10, pb: 10 }}>
