@@ -1,3 +1,5 @@
+import ProductImageInterface from './ProductImageInterface';
+
 export default interface ProductInterface {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export default interface ProductInterface {
   description: string;
   price: number;
   image: string;
+  images: ProductImageInterface[];
 }
