@@ -35,7 +35,7 @@ const Header: FC = () => {
             AeroGlissers
           </Typography>
           <Phone value="+79046001624" sx={{ mr: matches ? 0 : 1 }} />
-          {!matches && <Email value="info@aeroglissers.ru" />}
+          {!matches && <Email value="boss.kletsin1@mail.ru" />}
         </Toolbar>
       </Container>
     </AppBar>

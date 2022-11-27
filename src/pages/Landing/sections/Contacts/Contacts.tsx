@@ -32,7 +32,7 @@ const Contacts: FC = () => {
               Контакты
             </Typography>
             <Phone value="+79046001624" />
-            <Email value="info@aeroglissers.ru" />
+            <Email value="boss.kletsin1@mail.ru" />
             <Box sx={{ display: 'flex', justifyContent: 'end' }}>
               <WhatsApp phone="79046001624" />
               <YouTube url="#" />
