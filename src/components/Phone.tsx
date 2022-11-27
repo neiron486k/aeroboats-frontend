@@ -9,7 +9,7 @@ interface PhoneProps {
 const Phone: FC<PhoneProps> = (props) => {
   const { value } = props;
   return (
-    <Link href={`mailto: ${value}`} underline="none" {...props}>
+    <Link href={`tel: ${value}`} underline="none" {...props}>
       <Button size="large" startIcon={<PhoneIcon />}>
         {value}
       </Button>
