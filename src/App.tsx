@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import setupTheme from './config/theme';
 import Landing from './pages/Landing';
-import Product from './pages/Product';
+import Product from './pages/Product/Product';
 
 const theme = setupTheme();
 
