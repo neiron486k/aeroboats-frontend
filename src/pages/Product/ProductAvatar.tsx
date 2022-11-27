@@ -1,7 +1,8 @@
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Box, IconButton, ariaHidden } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { FC, useRef } from 'react';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 import ProductImageInterface from '../../contracts/ProductImageInterface';
 import AvatarNavigator from './AvatarNavigator';
