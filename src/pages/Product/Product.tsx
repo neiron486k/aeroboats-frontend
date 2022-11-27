@@ -1,12 +1,9 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import Slider from 'react-slick';
 
-import Title from '../../components/Title';
 import { useGetProductQuery } from '../../services/product';
 import ProductAvatar from './ProductAvatar';
-import ProductSpecification from './ProductSpecification';
 
 const Product: FC = () => {
   const { id } = useParams();
@@ -24,14 +21,9 @@ const Product: FC = () => {
               {product.name}
             </Typography>
             <Typography variant="h5" align="center" gutterBottom>
-              {product.price}
+              {product.price}p
             </Typography>
-            <Typography variant="h6" align="center" gutterBottom>
-              Характеристики
-            </Typography>
-            {product.specifications.map((specification) => {
-              return <ProductSpecification {...specification} />;
-            })}
+            <Typography dangerouslySetInnerHTML={{ __html: product.description }} />
           </Grid>
         </Grid>
       )}
