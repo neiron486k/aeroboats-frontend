@@ -1,4 +1,4 @@
-import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React from 'react';
 
 import water from '../../../../assets/landing/images/products/water_background.jpeg';
@@ -7,10 +7,7 @@ import { useGetProductsQuery } from '../../../../services/product';
 import Product from './Product';
 
 const Products = () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  const pageSize = matches ? 4 : 10;
-  const { data: products, isSuccess } = useGetProductsQuery(pageSize);
+  const { data: products, isSuccess } = useGetProductsQuery(10);
 
   return (
     <Box

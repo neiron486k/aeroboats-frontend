@@ -1,7 +1,8 @@
-import { Box, Button, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 
 import jumbo from '../../../assets/landing/images/jumbo.jpg';
+import Order from '../../../components/Order';
 
 const Hero: FC = () => {
   const theme = useTheme();
@@ -43,9 +44,7 @@ const Hero: FC = () => {
         >
           Снег, лед, вода – не имеет значения!
         </Typography>
-        <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }}>
-          Заказать
-        </Button>
+        <Order />
       </Container>
     </Box>
   );
