@@ -32,7 +32,6 @@ const Order: FC = () => {
           <FormControl fullWidth sx={{ '& .MuiTextField-root': { mb: 2 } }}>
             <TextField id="fullName" label="Ф.И.О" type="text" required variant="outlined" sx={{ mt: 2 }} />
             <TextField id="phone" label="Телефон" type="text" required variant="outlined" />
-            <TextField id="email" label="Почта" type="tel" required variant="outlined" />
           </FormControl>
           <FormControl fullWidth>
             <InputLabel id="product-select-label">Товар *</InputLabel>
