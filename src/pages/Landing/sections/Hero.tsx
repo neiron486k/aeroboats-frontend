@@ -2,7 +2,7 @@ import { Box, Container, Typography, useMediaQuery, useTheme } from '@mui/materi
 import React, { FC } from 'react';
 
 import jumbo from '../../../assets/landing/images/jumbo.jpg';
-import Order from '../../../components/Order';
+import Order from '../../../components/Order/Order';
 
 const Hero: FC = () => {
   const theme = useTheme();

@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseApiUrl } from '../config/baseApiUrl';
 import CreateOrderInterface from '../contracts/CreateOrderInterface';
 
-export const productsApi = createApi({
-  reducerPath: 'products',
+export const orderApi = createApi({
+  reducerPath: 'orders',
   baseQuery: fetchBaseQuery({ baseUrl: baseApiUrl }),
   endpoints: (builder) => ({
     addNewOrder: builder.mutation({
@@ -17,4 +17,4 @@ export const productsApi = createApi({
   }),
 });
 
-export const { useAddNewOrderMutation } = productsApi;
+export const { useAddNewOrderMutation } = orderApi;
