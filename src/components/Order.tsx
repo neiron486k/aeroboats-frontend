@@ -13,17 +13,19 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
 import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
+import { useAddNewOrderMutation } from '../services/order';
 import { useGetProductsQuery } from '../services/product';
 
 const Order: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { data: products, isSuccess } = useGetProductsQuery(10);
+  const [addNewOrder, { isLoading, error }] = useAddNewOrderMutation();
   const [product, setProduct] = useState('');
   const [inputs, setInputs] = useState({
     full_name: '',
     phone: '',
     product,
-    recapcha: '',
+    recaptcha: '',
   });
 
   const handleOpen = () => setOpen(true);
@@ -36,9 +38,10 @@ const Order: FC = () => {
     }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // @todo send inputs here
+    const data = { ...inputs, product: +product };
+    await addNewOrder(data);
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
@@ -55,14 +58,14 @@ const Order: FC = () => {
     (token: string) => {
       setInputs((prevState) => ({
         ...prevState,
-        recapcha: token,
+        recaptcha: token,
       }));
     },
     [setInputs],
   );
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey="6Lf4QVQjAAAAAEAXrqHZcW409BwX3vCIecjGRFU2">
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}>
       <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }} onClick={handleOpen}>
         Заказать
       </Button>
