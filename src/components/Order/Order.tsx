@@ -10,7 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useCallback, useEffect, useState } from 'react';
 import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import { useAddNewOrderMutation } from '../../services/order';
@@ -40,12 +40,22 @@ const Order: FC = () => {
   const [inputErrors, setInputErrors] = useState(inputErrorsInitialState);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setInputErrors(inputErrorsInitialState);
+    setInputs(inputsInitialState);
+    setOpen(false);
+  };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
+    }));
+
+    setInputErrors((prevState) => ({
+      ...prevState,
+      [event.target.name]: [],
     }));
   };
 
@@ -63,6 +73,11 @@ const Order: FC = () => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+
+    setInputErrors((prevState) => ({
+      ...prevState,
+      [event.target.name]: [],
+    }));
   };
 
   const onVerify = useCallback(
@@ -74,6 +89,20 @@ const Order: FC = () => {
     },
     [setInputs],
   );
+
+  useEffect(() => {
+    if (error && 'data' in error) {
+      const errorData = error.data as typeof inputErrorsInitialState;
+      setInputErrors({ ...inputErrorsInitialState, ...errorData });
+    }
+  }, [setInputErrors, error]);
+
+  useEffect(() => {
+    if (isOrderSuccess) {
+      setInputErrors(inputErrorsInitialState);
+      setInputs(inputsInitialState);
+    }
+  }, [setInputErrors, setInputs, isOrderSuccess]);
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}>
@@ -96,6 +125,7 @@ const Order: FC = () => {
                   sx={{ mt: 2 }}
                   onChange={handleChange}
                   error={inputErrors.full_name.length > 0}
+                  helperText={inputErrors.full_name}
                 />
                 <TextField
                   id="phone"
@@ -106,6 +136,7 @@ const Order: FC = () => {
                   variant="outlined"
                   onChange={handleChange}
                   error={inputErrors.phone.length > 0}
+                  helperText={inputErrors.phone}
                 />
               </FormControl>
               <FormControl fullWidth>
