@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import React, { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import './App.css';
 import setupTheme from './config/theme';
 import Landing from './pages/Landing';
 import Product from './pages/Product/Product';

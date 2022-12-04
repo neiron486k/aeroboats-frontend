@@ -10,61 +10,122 @@ import {
   TextField,
 } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
+import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import { useGetProductsQuery } from '../services/product';
 
 const Order: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { data: products, isSuccess } = useGetProductsQuery(10);
-  const [selectValue, setSelectValue] = useState('');
+  const [product, setProduct] = useState('');
+  const [inputs, setInputs] = useState({
+    full_name: '',
+    phone: '',
+    product,
+    recapcha: '',
+  });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    const value = event.target.value.toString();
-    setSelectValue(value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // @todo send inputs here
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    const value = event.target.value.toString();
+    setProduct(value);
+
+    setInputs((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const onVerify = useCallback(
+    (token: string) => {
+      setInputs((prevState) => ({
+        ...prevState,
+        recapcha: token,
+      }));
+    },
+    [setInputs],
+  );
+
   return (
-    <>
+    <GoogleReCaptchaProvider reCaptchaKey="6Lf4QVQjAAAAAEAXrqHZcW409BwX3vCIecjGRFU2">
       <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }} onClick={handleOpen}>
         Заказать
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
-        <DialogTitle>Оформление заказа</DialogTitle>
-        <DialogContent>
-          <FormControl fullWidth sx={{ '& .MuiTextField-root': { mb: 2 } }}>
-            <TextField id="fullName" label="Ф.И.О" type="text" required variant="outlined" sx={{ mt: 2 }} />
-            <TextField id="phone" label="Телефон" type="text" required variant="outlined" />
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel id="product-select-label">Товар *</InputLabel>
-            <Select
-              fullWidth
-              variant="outlined"
-              labelId="product-select-label"
-              id="product-select"
-              label="Товар *"
-              value={selectValue}
-              onChange={handleSelectChange}
-            >
-              {isSuccess &&
-                products.results.map((product) => (
-                  <MenuItem key={product.id} value={product.id}>
-                    {product.name}
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Отмена</Button>
-          <Button type="submit">Заказать</Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>Оформление заказа</DialogTitle>
+          <DialogContent>
+            <FormControl fullWidth sx={{ '& .MuiTextField-root': { mb: 2 } }}>
+              <TextField
+                id="fullName"
+                name="full_name"
+                label="Ф.И.О"
+                type="text"
+                required
+                variant="outlined"
+                sx={{ mt: 2 }}
+                onChange={handleChange}
+              />
+              <TextField
+                id="phone"
+                name="phone"
+                label="Телефон"
+                type="text"
+                required
+                variant="outlined"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="product-select-label">Товар *</InputLabel>
+              <Select
+                fullWidth
+                variant="outlined"
+                labelId="product-select-label"
+                id="product-select"
+                name="product"
+                label="Товар *"
+                value={product}
+                onChange={handleSelectChange}
+              >
+                {isSuccess &&
+                  products.results.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
+            <FormControl>
+              <GoogleReCaptcha onVerify={onVerify} action="order" />
+            </FormControl>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" variant="contained" color="secondary">
+              Заказать
+            </Button>
+            <Button onClick={handleClose} variant="contained">
+              Отмена
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
-    </>
+    </GoogleReCaptchaProvider>
   );
 };
 
