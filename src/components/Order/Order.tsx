@@ -38,6 +38,7 @@ const Order: FC = () => {
   const [product, setProduct] = useState('');
   const [inputs, setInputs] = useState(inputsInitialState);
   const [inputErrors, setInputErrors] = useState(inputErrorsInitialState);
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
   const handleOpen = () => setOpen(true);
 
@@ -65,6 +66,8 @@ const Order: FC = () => {
     event.preventDefault();
     const data = { ...inputs, product: +product };
     await addNewOrder(data);
+
+    setRefreshReCaptcha((r) => !r);
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
@@ -163,7 +166,7 @@ const Order: FC = () => {
                 </Select>
               </FormControl>
               <FormControl>
-                <GoogleReCaptcha onVerify={onVerify} action="order" />
+                <GoogleReCaptcha onVerify={onVerify} action="order" refreshReCaptcha={refreshReCaptcha} />
               </FormControl>
             </DialogContent>
             <DialogActions>
