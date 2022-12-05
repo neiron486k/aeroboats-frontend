@@ -41,10 +41,12 @@ const Order: FC = () => {
 
   const handleOpen = () => setOpen(true);
 
-  const handleClose = () => {
-    setInputErrors(inputErrorsInitialState);
-    setInputs(inputsInitialState);
-    setOpen(false);
+  const handleClose = (event: object, reason: string) => {
+    if (reason !== 'backdropClick') {
+      setInputErrors(inputErrorsInitialState);
+      setInputs(inputsInitialState);
+      setOpen(false);
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -168,7 +170,7 @@ const Order: FC = () => {
               <Button type="submit" variant="contained" color="secondary">
                 Заказать
               </Button>
-              <Button onClick={handleClose} variant="contained">
+              <Button onClick={(event) => handleClose(event, 'buttonClick')} variant="contained">
                 Отмена
               </Button>
             </DialogActions>
