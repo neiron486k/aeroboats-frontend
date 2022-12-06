@@ -2,7 +2,7 @@ import { Box, Container, Typography, useMediaQuery, useTheme } from '@mui/materi
 import React, { FC } from 'react';
 
 import jumbo from '../../../assets/landing/images/jumbo.jpg';
-import OrderForm from '../../../components/Order/OrderForm';
+import Order from '../../../components/Order/Order';
 
 const Hero: FC = () => {
   const theme = useTheme();
@@ -44,7 +44,7 @@ const Hero: FC = () => {
         >
           Снег, лед, вода – не имеет значения!
         </Typography>
-        <OrderForm />
+        <Order />
       </Container>
     </Box>
   );
