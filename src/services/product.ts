@@ -6,6 +6,7 @@ import ProductInterface from '../contracts/ProductInterface';
 
 export const productsApi = createApi({
   reducerPath: 'products',
+  tagTypes: ['Product'],
   baseQuery: fetchBaseQuery({ baseUrl: baseApiUrl }),
   endpoints: (builder) => ({
     getProducts: builder.query<ListResponse<ProductInterface>, number>({

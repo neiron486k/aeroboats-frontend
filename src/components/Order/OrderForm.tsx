@@ -31,26 +31,29 @@ const inputErrorsInitialState = {
   recaptcha: [] as string[],
 };
 
-const Order: FC = () => {
+const OrderForm: FC = () => {
   const [open, setOpen] = useState(false);
   const { data: products, isSuccess } = useGetProductsQuery(10);
-  const [addNewOrder, { error, isSuccess: isOrderSuccess }] = useAddNewOrderMutation();
-  const [product, setProduct] = useState('');
+  const [addNewOrder, { error }] = useAddNewOrderMutation();
   const [inputs, setInputs] = useState(inputsInitialState);
   const [inputErrors, setInputErrors] = useState(inputErrorsInitialState);
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    setIsOrderSuccess(false);
+  };
 
   const handleClose = (event: object, reason: string) => {
-    if (reason !== 'backdropClick') {
+    if (reason !== 'backdropClick' || isOrderSuccess) {
       setInputErrors(inputErrorsInitialState);
       setInputs(inputsInitialState);
       setOpen(false);
     }
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent) => {
     setInputs((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
@@ -64,25 +67,15 @@ const Order: FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = { ...inputs, product: +product };
-    await addNewOrder(data);
+    const data = { ...inputs, product: +inputs.product };
+    const response = await addNewOrder(data);
+
+    if ('data' in response) {
+      setInputs(inputsInitialState);
+      setIsOrderSuccess(true);
+    }
 
     setRefreshReCaptcha((r) => !r);
-  };
-
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    const value = event.target.value.toString();
-    setProduct(value);
-
-    setInputs((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-
-    setInputErrors((prevState) => ({
-      ...prevState,
-      [event.target.name]: [],
-    }));
   };
 
   const onVerify = useCallback(
@@ -101,13 +94,6 @@ const Order: FC = () => {
       setInputErrors({ ...inputErrorsInitialState, ...errorData });
     }
   }, [setInputErrors, error]);
-
-  useEffect(() => {
-    if (isOrderSuccess) {
-      setInputErrors(inputErrorsInitialState);
-      setInputs(inputsInitialState);
-    }
-  }, [setInputErrors, setInputs, isOrderSuccess]);
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}>
@@ -153,8 +139,8 @@ const Order: FC = () => {
                   id="product-select"
                   name="product"
                   label="Товар *"
-                  value={product}
-                  onChange={handleSelectChange}
+                  value={inputs.product}
+                  onChange={handleChange}
                   error={inputErrors.product.length > 0}
                 >
                   {isSuccess &&
@@ -186,4 +172,4 @@ const Order: FC = () => {
   );
 };
 
-export default Order;
+export default OrderForm;

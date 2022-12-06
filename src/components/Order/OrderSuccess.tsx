@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 const OrderSuccess: FC = () => {
@@ -6,11 +6,16 @@ const OrderSuccess: FC = () => {
     <Box
       sx={{
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'column',
+        padding: 2,
       }}
     >
-      Success
+      <Typography variant="h4" color="secondary.main" gutterBottom paragraph align="center">
+        Ваш заказ оформлен.
+      </Typography>
+      <Typography variant="h6" align="center">
+        С вами скоро свяжется наш специалист.
+      </Typography>
     </Box>
   );
 };
