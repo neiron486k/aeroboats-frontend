@@ -1,4 +1,4 @@
-import { Button, FormControl, MenuItem, TextField } from '@mui/material';
+import { Box, Button, FormControl, MenuItem, TextField } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
 import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
@@ -6,9 +6,18 @@ import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha
 import CreateOrderInterface from '../../contracts/CreateOrderInterface';
 import ProductInterface from '../../contracts/ProductInterface';
 
+export interface FormErrors {
+  full_name: string[];
+  phone: string[];
+  product: string[];
+}
+
 interface CreateOrderFormProps {
   products: ProductInterface[];
+  errors: FormErrors;
   onSubmit: (values: CreateOrderInterface) => void;
+  onClose: () => void;
+  onChangeField: (field: string) => void;
 }
 
 const InitValuesState = {
@@ -18,7 +27,7 @@ const InitValuesState = {
   recaptcha: '',
 };
 
-const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit }) => {
+const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit, onClose, onChangeField, errors }) => {
   const [values, setValues] = useState(InitValuesState);
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
@@ -28,11 +37,18 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit }) => {
     setRefreshReCaptcha((r) => !r);
   };
 
+  const handleClose = () => {
+    onClose();
+    setValues(InitValuesState);
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent) => {
     setValues((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+
+    onChangeField(event.target.name);
   };
 
   const onVerify = useCallback(
@@ -47,10 +63,22 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl>
-        <TextField name="full_name" value={values.full_name} onChange={handleChange} />
-        <TextField name="phone" value={values.phone} onChange={handleChange} />
-        <Select name="product" value={values.product} onChange={handleChange}>
+      <FormControl fullWidth sx={{ '& .MuiTextField-root': { mb: 2 } }}>
+        <TextField
+          name="full_name"
+          value={values.full_name}
+          onChange={handleChange}
+          error={errors.full_name.length > 0}
+          helperText={errors.full_name}
+        />
+        <TextField
+          name="phone"
+          value={values.phone}
+          onChange={handleChange}
+          error={errors.phone.length > 0}
+          helperText={errors.phone}
+        />
+        <Select name="product" value={values.product} onChange={handleChange} error={errors.product.length > 0}>
           {products.map((item) => (
             <MenuItem key={item.id} value={item.id}>
               {item.name}
@@ -60,9 +88,15 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit }) => {
         <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}>
           <GoogleReCaptcha onVerify={onVerify} action="order" refreshReCaptcha={refreshReCaptcha} />
         </GoogleReCaptchaProvider>
-        <Button type="submit">Заказать</Button>
-        <Button>Отмена</Button>
       </FormControl>
+      <Box sx={{ display: 'flex', justifyContent: 'end', mt: 2 }}>
+        <Button type="submit" variant="contained" color="secondary" sx={{ mr: 1 }}>
+          Заказать
+        </Button>
+        <Button variant="contained" onClick={handleClose}>
+          Отмена
+        </Button>
+      </Box>
     </form>
   );
 };
