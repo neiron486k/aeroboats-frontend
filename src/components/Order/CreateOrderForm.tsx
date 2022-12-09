@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, TextField } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
-import { GoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import CreateOrderInterface from '../../contracts/CreateOrderInterface';
 import ProductInterface from '../../contracts/ProductInterface';
@@ -84,9 +84,7 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit, onClose
           error={errors.phone.length > 0}
           helperText={errors.phone}
         />
-        <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}>
-          <GoogleReCaptcha onVerify={onVerify} action="order" refreshReCaptcha={refreshReCaptcha} />
-        </GoogleReCaptchaProvider>
+        <GoogleReCaptcha onVerify={onVerify} action="order" refreshReCaptcha={refreshReCaptcha} />
       </FormControl>
       <FormControl fullWidth>
         <InputLabel id="product-select-label">Товар *</InputLabel>
