@@ -3,13 +3,18 @@ import React, { FC } from 'react';
 
 import WorkInterface from '../../../../contracts/WorkInterface';
 
-const Work: FC<WorkInterface> = ({ image }) => {
+interface WorkProps {
+  item: WorkInterface;
+  onClick: (item: WorkInterface) => void;
+}
+
+const Work: FC<WorkProps> = ({ item, onClick }) => {
   return (
-    <Box p={1}>
+    <Box p={1} onClick={() => onClick(item)}>
       <Box
         sx={{
           height: '30vh',
-          background: `url(${image}) center center / cover no-repeat`,
+          background: `url(${item.image}) center center / cover no-repeat`,
         }}
       />
     </Box>
