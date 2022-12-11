@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Dialog, DialogTitle, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Dialog, DialogTitle, Typography, useMediaQuery, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import React, { FC } from 'react';
 
@@ -17,7 +17,10 @@ const WorkDialog: FC<WorkDialogProps> = ({ work, open, onClose }) => {
 
   return (
     <Dialog open={open} fullWidth maxWidth={false} onClose={onClose}>
-      <DialogTitle sx={{ display: 'flex', justifyContent: 'end' }}>
+      <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Typography variant={matches ? 'subtitle1' : 'h6'} component="div" flexGrow="1">
+          {work.name}
+        </Typography>
         <IconButton
           aria-label="close"
           sx={{
