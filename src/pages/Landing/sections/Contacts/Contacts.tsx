@@ -35,7 +35,7 @@ const Contacts: FC = () => {
             <Email value="boss.kletsin1@mail.ru" />
             <Box sx={{ display: 'flex', justifyContent: 'end' }}>
               <WhatsApp phone="79046001624" />
-              <YouTube url="#" />
+              <YouTube url="https://www.youtube.com/@user-bh1bn8ox5l" />
             </Box>
           </Paper>
         </Box>
