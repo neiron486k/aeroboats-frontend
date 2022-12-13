@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 
 import Email from '../../../../components/Email';
 import Phone from '../../../../components/Phone';
+import Vk from '../../../../components/Vk';
 import WhatsApp from '../../../../components/WhatsApp';
 import YouTube from '../../../../components/YouTube';
 import Map from './Map';
@@ -36,6 +37,7 @@ const Contacts: FC = () => {
             <Box sx={{ display: 'flex', justifyContent: 'end' }}>
               <WhatsApp phone="79046001624" />
               <YouTube url="https://www.youtube.com/@user-bh1bn8ox5l" />
+              <Vk url="https://vk.com/public188931964" />
             </Box>
           </Paper>
         </Box>
