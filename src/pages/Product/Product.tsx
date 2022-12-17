@@ -1,7 +1,9 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
+import { single } from '../../config/keywords';
 import { useGetProductQuery } from '../../services/product';
 import ProductAvatar from './ProductAvatar';
 
@@ -13,6 +15,15 @@ const Product: FC = () => {
 
   return (
     <Box sx={{ background: 'white' }} height={matches ? '100%' : '100vh'}>
+      {isSuccess && (
+        <Helmet>
+          <title>{`AeroGlissers - ${product.name}`}</title>
+          <meta name="description" content={product.short_description} />
+          <meta name="keywords" content={single.concat([product.name]).join(',')} />
+          <meta property="og:title" content={product.name} />
+          <meta property="og:image" content={product.image} />
+        </Helmet>
+      )}
       {isSuccess && (
         <Grid container>
           <Grid item xs={12} md={6}>
