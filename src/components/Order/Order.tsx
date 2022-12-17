@@ -63,14 +63,7 @@ const Order: FC = () => {
 
   return (
     <Box>
-      <Button
-        color="secondary"
-        variant="contained"
-        size="large"
-        sx={{ mt: 1 }}
-        onClick={handleOpenDialog}
-        disabled={isLoading}
-      >
+      <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }} onClick={handleOpenDialog}>
         Заказать
       </Button>
       <Dialog open={open} maxWidth="xs" fullWidth>
@@ -84,6 +77,7 @@ const Order: FC = () => {
                 onSubmit={handleFormSubmit}
                 onClose={handleCloseDialog}
                 onChangeField={handleChangeField}
+                loading={isLoading}
               />
             )}
           </DialogContent>

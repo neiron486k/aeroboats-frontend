@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, TextField } from '@mui/material';
+import { Box, Button, CircularProgress, FormControl, InputLabel, MenuItem, TextField } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -18,6 +18,7 @@ interface CreateOrderFormProps {
   onSubmit: (values: CreateOrderInterface) => void;
   onClose: () => void;
   onChangeField: (field: string) => void;
+  loading: boolean;
 }
 
 const InitValuesState = {
@@ -27,7 +28,7 @@ const InitValuesState = {
   recaptcha: '',
 };
 
-const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit, onClose, onChangeField, errors }) => {
+const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit, onClose, onChangeField, errors, loading }) => {
   const [values, setValues] = useState(InitValuesState);
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
@@ -103,9 +104,23 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ products, onSubmit, onClose
         </Select>
       </FormControl>
       <Box sx={{ display: 'flex', justifyContent: 'end', mt: 2 }}>
-        <Button type="submit" variant="contained" color="secondary" sx={{ mr: 1 }}>
-          Заказать
-        </Button>
+        <Box sx={{ mr: 1, position: 'relative' }}>
+          <Button type="submit" variant="contained" color="secondary" disabled={loading}>
+            Заказать
+          </Button>
+          {loading && (
+            <CircularProgress
+              size={24}
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                marginTop: '-12px',
+                marginLeft: '-12px',
+              }}
+            />
+          )}
+        </Box>
         <Button variant="contained" onClick={handleClose}>
           Отмена
         </Button>
