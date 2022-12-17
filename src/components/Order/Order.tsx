@@ -21,7 +21,7 @@ const FormErrorsInit = {
 
 const Order: FC = () => {
   const { data: products, isSuccess } = useGetProductsQuery(10);
-  const [addNewOrder] = useAddNewOrderMutation();
+  const [addNewOrder, { isLoading }] = useAddNewOrderMutation();
   const [open, setOpen] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(FormErrorsInit);
   const [orderCreated, setOrderCreated] = useState(false);
@@ -63,7 +63,14 @@ const Order: FC = () => {
 
   return (
     <Box>
-      <Button color="secondary" variant="contained" size="large" sx={{ mt: 1 }} onClick={handleOpenDialog}>
+      <Button
+        color="secondary"
+        variant="contained"
+        size="large"
+        sx={{ mt: 1 }}
+        onClick={handleOpenDialog}
+        disabled={isLoading}
+      >
         Заказать
       </Button>
       <Dialog open={open} maxWidth="xs" fullWidth>
