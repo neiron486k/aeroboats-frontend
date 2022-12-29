@@ -10,7 +10,7 @@ interface WorkProps {
 
 const Work: FC<WorkProps> = ({ item, onClick }) => {
   return (
-    <Box p={1} onClick={() => onClick(item)}>
+    <Box sx={{ p: 1, cursor: 'pointer' }} onClick={() => onClick(item)}>
       <Box
         sx={{
           height: '30vh',
