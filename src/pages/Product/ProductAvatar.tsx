@@ -26,7 +26,7 @@ const ProductAvatar: FC<ProductAvatarProps> = ({ images, height }) => {
         {images.map((image) => {
           return (
             <Box
-              key={image.id}
+              key={`productImage${image.id}`}
               sx={{
                 height,
                 background: `url(${image.path}) center center / cover no-repeat`,

@@ -14,7 +14,12 @@ interface AvatarNavigatorProps {
 
 const NextArrow: FC<ArrowProps> = ({ onClick }) => {
   return (
-    <IconButton onClick={onClick} color="inherit" size="large">
+    <IconButton
+      onClick={onClick}
+      color="inherit"
+      size="large"
+      sx={{ background: `rgba(0, 0, 0, .4)`, '&:hover': { background: `rgba(0, 0, 0, .5)` } }}
+    >
       <NavigateNextIcon fontSize="inherit" />
     </IconButton>
   );
@@ -22,7 +27,12 @@ const NextArrow: FC<ArrowProps> = ({ onClick }) => {
 
 const PrevArrow: FC<ArrowProps> = ({ onClick }) => {
   return (
-    <IconButton onClick={onClick} color="inherit" size="large">
+    <IconButton
+      onClick={onClick}
+      color="inherit"
+      size="large"
+      sx={{ background: `rgba(0, 0, 0, .4)`, '&:hover': { background: `rgba(0, 0, 0, .5)` } }}
+    >
       <NavigatePrevIcon fontSize="inherit" />
     </IconButton>
   );

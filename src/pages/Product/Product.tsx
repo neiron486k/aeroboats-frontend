@@ -1,8 +1,9 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
+import Header from '../../components/Header';
 import { single } from '../../config/keywords';
 import { useGetProductQuery } from '../../services/product';
 import ProductAvatar from './ProductAvatar';
@@ -14,7 +15,8 @@ const Product: FC = () => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ background: 'white' }} height={matches ? '100%' : '100vh'}>
+    <Box sx={{ background: 'white' }} height={matches ? '100vh' : '100vh'}>
+      <Header dark />
       {isSuccess && (
         <Helmet>
           <title>{`AeroGlissers - ${product.name}`}</title>
@@ -25,20 +27,20 @@ const Product: FC = () => {
         </Helmet>
       )}
       {isSuccess && (
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            <ProductAvatar height="50vh" images={product.images} />
-          </Grid>
-          <Grid item xs={12} md={6} p={2} height={matches ? '100%' : '50vh'}>
-            <Typography variant="h4" align="center" gutterBottom>
+        <>
+          <Container sx={{ mt: theme.spacing(matches ? 5 : 10), mb: theme.spacing(matches ? 5 : 10) }}>
+            <Typography sx={{ lineHeight: 1 }} variant="overline" component="div" color="text.secondary">
+              Аэролодка
+            </Typography>
+            <Typography sx={{ lineHeight: 0.8 }} variant="h4" component="div">
               {product.name}
             </Typography>
-            <Typography variant="h5" align="center" gutterBottom>
-              {product.price}p
-            </Typography>
+          </Container>
+          <ProductAvatar height="50vh" images={product.images} />
+          <Container sx={{ mt: theme.spacing(matches ? 5 : 10), mb: theme.spacing(matches ? 5 : 10) }}>
             <Typography dangerouslySetInnerHTML={{ __html: product.description }} />
-          </Grid>
-        </Grid>
+          </Container>
+        </>
       )}
     </Box>
   );

@@ -12,7 +12,7 @@ import Works from './sections/Works/Works';
 const Landing: FC = () => {
   return (
     <Box>
-      <Header />
+      <Header dark={false} />
       <Hero />
       <About />
       <Products />

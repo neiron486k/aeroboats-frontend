@@ -9,8 +9,8 @@ interface PhoneProps {
 const Phone: FC<PhoneProps> = (props) => {
   const { value } = props;
   return (
-    <Link href={`tel: ${value}`} underline="none" {...props}>
-      <Button size="large" startIcon={<PhoneIcon />}>
+    <Link href={`tel: ${value}`} underline="none" {...props} sx={{ color: 'inherit' }}>
+      <Button size="large" startIcon={<PhoneIcon />} sx={{ color: 'inherit' }}>
         {value}
       </Button>
     </Link>
