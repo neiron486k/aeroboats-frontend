@@ -25,18 +25,19 @@ const Hero: FC = () => {
         }}
       >
         <Typography
-          variant="h2"
+          variant={matches ? 'h5' : 'h2'}
+          component="h2"
           sx={{
             color: 'primary.contrastText',
             textTransform: 'uppercase',
-            fontWeight: 500,
-            fontSize: matches ? '2rem' : '3rem',
           }}
+          align="center"
         >
           Аэролодки с повышенной проходимостью
         </Typography>
         <Typography
-          variant="h6"
+          variant={matches ? 'body1' : 'h6'}
+          align="center"
           sx={{
             color: 'primary.contrastText',
             p: 1,
