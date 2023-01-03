@@ -38,7 +38,7 @@ const Works: FC = () => {
   };
 
   return (
-    <Box sx={{ pt: 10, pb: 10 }}>
+    <Box sx={{ pt: 10, pb: 10, background: '#000' }}>
       <Container>
         <Title>Наши работы</Title>
         <Slider {...settings}>

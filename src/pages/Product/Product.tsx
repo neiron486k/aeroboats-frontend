@@ -15,7 +15,7 @@ const Product: FC = () => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ background: 'white' }} height={matches ? '100vh' : '100vh'}>
+    <>
       <Header dark />
       {isSuccess && (
         <Helmet>
@@ -32,17 +32,17 @@ const Product: FC = () => {
             <Typography sx={{ lineHeight: 1 }} variant="overline" component="div" color="text.secondary">
               Аэролодка
             </Typography>
-            <Typography sx={{ lineHeight: 0.8 }} variant="h4" component="div">
+            <Typography sx={{ lineHeight: 0.8 }} variant={matches ? 'h5' : 'h4'} component="div">
               {product.name}
             </Typography>
           </Container>
           <ProductAvatar height="50vh" images={product.images} />
-          <Container sx={{ mt: theme.spacing(matches ? 5 : 10), mb: theme.spacing(matches ? 5 : 10) }}>
+          <Container sx={{ mt: theme.spacing(matches ? 1 : 10), mb: theme.spacing(matches ? 1 : 10) }}>
             <Typography dangerouslySetInnerHTML={{ __html: product.description }} />
           </Container>
         </>
       )}
-    </Box>
+    </>
   );
 };
 
