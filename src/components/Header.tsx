@@ -1,5 +1,6 @@
 import { AppBar, Avatar, Container, Typography, useMediaQuery, useScrollTrigger, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import logo_black from '../assets/landing/images/logo_black.png';
 import logo_white from '../assets/landing/images/logo_white.png';
@@ -38,10 +39,19 @@ const Header: FC<HeaderProps> = ({ dark }) => {
           pb: theme.spacing(2),
         }}
       >
-        <Avatar src={logo} />
-        <Typography sx={{ flexGrow: 1, ml: 1 }} variant={matches ? 'h6' : 'h4'}>
-          AeroGlissers
-        </Typography>
+        <Link
+          to="/"
+          style={{
+            flexGrow: 1,
+            display: 'flex',
+            alignItems: 'center',
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
+        >
+          <Avatar src={logo} sx={{ mr: 1 }} />
+          <Typography variant={matches ? 'h6' : 'h4'}>AeroGlissers</Typography>
+        </Link>
         <Phone value="+79046001624" sx={{ mr: matches ? 0 : 1 }} />
         {!matches && <Email value="boss.kletsin1@mail.ru" />}
       </Container>
