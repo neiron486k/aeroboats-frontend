@@ -36,7 +36,7 @@ const Product: FC = () => {
               {product.name}
             </Typography>
           </Container>
-          <ProductAvatar height="50vh" images={product.images} />
+          <ProductAvatar height={matches ? '40vh' : '50vh'} images={product.images} />
           <Container sx={{ mt: theme.spacing(matches ? 1 : 10), mb: theme.spacing(matches ? 1 : 10) }}>
             <Typography dangerouslySetInnerHTML={{ __html: product.description }} />
           </Container>
