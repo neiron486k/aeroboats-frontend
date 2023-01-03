@@ -1,4 +1,4 @@
-import { Box, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
