@@ -40,7 +40,7 @@ const Hero: FC = () => {
           align="center"
           sx={{
             color: 'primary.contrastText',
-            p: 1,
+            p: theme.spacing(1),
           }}
         >
           Снег, лед, вода – не имеет значения!

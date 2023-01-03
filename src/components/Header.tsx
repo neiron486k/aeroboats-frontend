@@ -49,10 +49,10 @@ const Header: FC<HeaderProps> = ({ dark }) => {
             textDecoration: 'none',
           }}
         >
-          <Avatar src={logo} sx={{ mr: 1 }} />
+          <Avatar src={logo} sx={{ mr: theme.spacing(1) }} />
           <Typography variant={matches ? 'h6' : 'h4'}>AeroGlissers</Typography>
         </Link>
-        <Phone value="+79046001624" sx={{ mr: matches ? 0 : 1 }} />
+        <Phone value="+79046001624" sx={{ mr: matches ? 0 : theme.spacing(1) }} />
         {!matches && <Email value="boss.kletsin1@mail.ru" />}
       </Container>
     </AppBar>
