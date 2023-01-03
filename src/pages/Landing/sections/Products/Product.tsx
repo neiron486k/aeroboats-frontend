@@ -53,7 +53,12 @@ const Product: FC<ProductProps> = ({ id, name, short_description, price, image, 
         <Typography gutterBottom variant={matches ? 'h6' : 'h5'} component="div" sx={{ textTransform: 'uppercase' }}>
           {name}
         </Typography>
-        <Typography gutterBottom variant={matches ? 'body1' : 'h6'} component="div" sx={{ color: '#083f8a' }}>
+        <Typography
+          gutterBottom
+          variant={matches ? 'body1' : 'h6'}
+          component="div"
+          sx={{ color: '#083f8a', fontWeight: 600 }}
+        >
           {price} руб.
         </Typography>
         <Typography color="text.secondary" gutterBottom={matches} paragraph={matches}>
