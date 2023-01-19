@@ -35,6 +35,7 @@
       }
     ],
     "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "jsx-a11y/media-has-caption": "off"
   }
 }

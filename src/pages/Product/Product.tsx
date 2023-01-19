@@ -1,4 +1,4 @@
-import { Container, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
@@ -39,6 +39,26 @@ const Product: FC = () => {
           <ProductAvatar height={matches ? '40vh' : '50vh'} images={product.images} />
           <Container sx={{ mt: theme.spacing(matches ? 1 : 10), mb: theme.spacing(matches ? 1 : 10) }}>
             <Typography dangerouslySetInnerHTML={{ __html: product.description }} />
+            <Grid container spacing={0}>
+              {product.videos.map((item, index) => {
+                const cellsPerRow = 3;
+                const appendix = product.videos.length % 3;
+                let cells = 12 / cellsPerRow;
+
+                if (cells - index + 1 <= appendix) {
+                  cells = 12 / appendix;
+                }
+
+                return (
+                  <Grid item key={item.id} md={cells}>
+                    <video width="100%" controls>
+                      <source src={item.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </Grid>
+                );
+              })}
+            </Grid>
           </Container>
         </>
       )}

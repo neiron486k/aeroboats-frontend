@@ -29,7 +29,7 @@ const ProductAvatar: FC<ProductAvatarProps> = ({ images, height }) => {
               key={`productImage${image.id}`}
               sx={{
                 height,
-                background: `url(${image.path}) center center / cover no-repeat`,
+                background: `url(${image.image}) center center / cover no-repeat`,
               }}
             />
           );
